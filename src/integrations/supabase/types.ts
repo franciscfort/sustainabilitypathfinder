@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessments: {
+        Row: {
+          career_matches: Json
+          created_at: string
+          current_skills: string[]
+          id: string
+          passion_areas: string[]
+          personality_answers: Json
+          recommended_skills: Json
+          session_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          career_matches: Json
+          created_at?: string
+          current_skills: string[]
+          id?: string
+          passion_areas: string[]
+          personality_answers: Json
+          recommended_skills: Json
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          career_matches?: Json
+          created_at?: string
+          current_skills?: string[]
+          id?: string
+          passion_areas?: string[]
+          personality_answers?: Json
+          recommended_skills?: Json
+          session_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
