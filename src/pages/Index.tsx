@@ -1,23 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LandingPage } from "@/components/LandingPage";
 import { AssessmentPage } from "@/components/AssessmentPage";
 import { ResultsPage } from "@/components/ResultsPage";
 import { AssessmentAnswers, AssessmentResult, calculateCareerMatches } from "@/lib/careerMatcher";
+import { saveAssessment } from "@/lib/assessmentStorage";
+import { toast } from "sonner";
 
 type AppState = "landing" | "assessment" | "results";
 
 const Index = () => {
   const [appState, setAppState] = useState<AppState>("landing");
   const [results, setResults] = useState<AssessmentResult | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleStartAssessment = () => {
     setAppState("assessment");
   };
 
-  const handleAssessmentComplete = (answers: AssessmentAnswers) => {
+  const handleAssessmentComplete = async (answers: AssessmentAnswers) => {
     const calculatedResults = calculateCareerMatches(answers);
     setResults(calculatedResults);
     setAppState("results");
+
+    // Save to database
+    setIsSaving(true);
+    const { error } = await saveAssessment(answers, calculatedResults);
+    setIsSaving(false);
+
+    if (error) {
+      console.error("Failed to save assessment:", error);
+      toast.error("Couldn't save your results, but you can still view them!");
+    } else {
+      toast.success("Your results have been saved!");
+    }
   };
 
   const handleRestart = () => {
