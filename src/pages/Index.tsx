@@ -1,13 +1,52 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { LandingPage } from "@/components/LandingPage";
+import { AssessmentPage } from "@/components/AssessmentPage";
+import { ResultsPage } from "@/components/ResultsPage";
+import { AssessmentAnswers, AssessmentResult, calculateCareerMatches } from "@/lib/careerMatcher";
+
+type AppState = "landing" | "assessment" | "results";
 
 const Index = () => {
+  const [appState, setAppState] = useState<AppState>("landing");
+  const [results, setResults] = useState<AssessmentResult | null>(null);
+
+  const handleStartAssessment = () => {
+    setAppState("assessment");
+  };
+
+  const handleAssessmentComplete = (answers: AssessmentAnswers) => {
+    const calculatedResults = calculateCareerMatches(answers);
+    setResults(calculatedResults);
+    setAppState("results");
+  };
+
+  const handleRestart = () => {
+    setResults(null);
+    setAppState("landing");
+  };
+
+  const handleBackToLanding = () => {
+    setAppState("landing");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      {appState === "landing" && (
+        <LandingPage onStart={handleStartAssessment} />
+      )}
+      {appState === "assessment" && (
+        <AssessmentPage 
+          onComplete={handleAssessmentComplete}
+          onBack={handleBackToLanding}
+        />
+      )}
+      {appState === "results" && results && (
+        <ResultsPage 
+          results={results}
+          onRestart={handleRestart}
+        />
+      )}
+    </>
   );
 };
 
