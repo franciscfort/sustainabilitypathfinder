@@ -23,19 +23,19 @@ export function LandingPage({ onStart }: LandingPageProps) {
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance leading-relaxed">
-            Discover your ideal career path in the sustainability sector. 
-            Take our assessment to find roles that match your personality, 
-            passions, and skills—plus the high-demand skills to learn next.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance leading-relaxed">Discover your ideal career path in the sustainability sector. Take our assessment to find roles that match your personality, passions, and skills plus the high-demand skills to learn next.
+
+
+
           </p>
 
           {/* CTA Button */}
-          <Button 
-            variant="hero" 
-            size="xl" 
+          <Button
+            variant="hero"
+            size="xl"
             onClick={onStart}
-            className="group"
-          >
+            className="group">
+
             Start Assessment
             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
           </Button>
@@ -54,18 +54,18 @@ export function LandingPage({ onStart }: LandingPageProps) {
             <FeatureCard
               icon="🎯"
               title="Career Matching"
-              description="Get matched with 1-2 sustainability career paths based on your unique profile"
-            />
+              description="Get matched with 1-2 sustainability career paths based on your unique profile" />
+
             <FeatureCard
               icon="📈"
               title="Skill Recommendations"
-              description="Discover 2-3 high-demand skills you can learn in 3-6 months"
-            />
+              description="Discover 2-3 high-demand skills you can learn in 3-6 months" />
+
             <FeatureCard
               icon="🗺️"
               title="Clear Roadmap"
-              description="Understand why each recommendation fits you and what to do next"
-            />
+              description="Understand why each recommendation fits you and what to do next" />
+
           </div>
         </div>
       </section>
@@ -74,24 +74,24 @@ export function LandingPage({ onStart }: LandingPageProps) {
       <footer className="px-4 py-6 text-center text-sm text-muted-foreground border-t">
         <p>Helping you find your path in the sustainability sector</p>
       </footer>
-    </div>
-  );
+    </div>);
+
 }
 
-function FeatureCard({ 
-  icon, 
-  title, 
-  description 
-}: { 
-  icon: string; 
-  title: string; 
-  description: string;
-}) {
+function FeatureCard({
+  icon,
+  title,
+  description
+
+
+
+
+}: {icon: string;title: string;description: string;}) {
   return (
     <div className="bg-card rounded-xl p-6 shadow-card text-center animate-slide-up">
       <div className="text-4xl mb-4">{icon}</div>
       <h3 className="font-semibold text-lg mb-2">{title}</h3>
       <p className="text-muted-foreground text-sm">{description}</p>
-    </div>
-  );
+    </div>);
+
 }
