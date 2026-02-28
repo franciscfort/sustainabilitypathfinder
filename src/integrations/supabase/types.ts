@@ -24,6 +24,7 @@ export type Database = {
           personality_answers: Json
           recommended_skills: Json
           session_id: string | null
+          share_id: string | null
           user_id: string | null
         }
         Insert: {
@@ -35,6 +36,7 @@ export type Database = {
           personality_answers: Json
           recommended_skills: Json
           session_id?: string | null
+          share_id?: string | null
           user_id?: string | null
         }
         Update: {
@@ -46,6 +48,7 @@ export type Database = {
           personality_answers?: Json
           recommended_skills?: Json
           session_id?: string | null
+          share_id?: string | null
           user_id?: string | null
         }
         Relationships: []
