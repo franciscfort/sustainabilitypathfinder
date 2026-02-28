@@ -1,0 +1,64 @@
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { ResultsPage } from "@/components/ResultsPage";
+import { getAssessmentByShareId } from "@/lib/assessmentStorage";
+import { AssessmentResult } from "@/lib/careerMatcher";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const SharedResults = () => {
+  const { shareId } = useParams<{ shareId: string }>();
+  const navigate = useNavigate();
+  const [results, setResults] = useState<AssessmentResult | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    async function load() {
+      if (!shareId) {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+      const assessment = await getAssessmentByShareId(shareId);
+      if (assessment) {
+        setResults({
+          topCareers: assessment.career_matches,
+          recommendedSkills: assessment.recommended_skills,
+        });
+      } else {
+        setError(true);
+      }
+      setLoading(false);
+    }
+    load();
+  }, [shareId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  if (error || !results) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background gap-4">
+        <h1 className="text-2xl font-bold">Results not found</h1>
+        <p className="text-muted-foreground">This shared link may be invalid or expired.</p>
+        <Button onClick={() => navigate("/")}>Take the Assessment</Button>
+      </div>
+    );
+  }
+
+  return (
+    <ResultsPage
+      results={results}
+      onRestart={() => navigate("/")}
+      shareId={shareId}
+    />
+  );
+};
+
+export default SharedResults;

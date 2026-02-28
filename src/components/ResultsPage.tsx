@@ -1,16 +1,29 @@
-import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen } from "lucide-react";
+import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Share2, Check, Link } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AssessmentResult } from "@/lib/careerMatcher";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { toast } from "sonner";
 
 interface ResultsPageProps {
   results: AssessmentResult;
   onRestart: () => void;
+  shareId?: string | null;
 }
 
-export function ResultsPage({ results, onRestart }: ResultsPageProps) {
+export function ResultsPage({ results, onRestart, shareId }: ResultsPageProps) {
   const { topCareers, recommendedSkills } = results;
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = async () => {
+    if (!shareId) return;
+    const shareUrl = `${window.location.origin}/results/${shareId}`;
+    await navigator.clipboard.writeText(shareUrl);
+    setCopied(true);
+    toast.success("Share link copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -105,7 +118,17 @@ export function ResultsPage({ results, onRestart }: ResultsPageProps) {
         </section>
 
         {/* CTA Section */}
-        <section className="text-center pt-8 pb-12">
+        <section className="text-center pt-8 pb-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {shareId && (
+            <Button variant="default" size="lg" onClick={handleShare} className="group">
+              {copied ? (
+                <Check className="w-4 h-4 mr-2" />
+              ) : (
+                <Share2 className="w-4 h-4 mr-2" />
+              )}
+              {copied ? "Link Copied!" : "Share Results"}
+            </Button>
+          )}
           <Button variant="outline" size="lg" onClick={onRestart} className="group">
             <RefreshCw className="w-4 h-4 mr-2 transition-transform group-hover:rotate-180" />
             Retake Assessment
