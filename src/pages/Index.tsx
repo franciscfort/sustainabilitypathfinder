@@ -11,6 +11,7 @@ type AppState = "landing" | "assessment" | "results";
 const Index = () => {
   const [appState, setAppState] = useState<AppState>("landing");
   const [results, setResults] = useState<AssessmentResult | null>(null);
+  const [shareId, setShareId] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
   const handleStartAssessment = () => {
@@ -24,19 +25,21 @@ const Index = () => {
 
     // Save to database
     setIsSaving(true);
-    const { error } = await saveAssessment(answers, calculatedResults);
+    const { shareId: sid, error } = await saveAssessment(answers, calculatedResults);
     setIsSaving(false);
 
     if (error) {
       console.error("Failed to save assessment:", error);
       toast.error("Couldn't save your results, but you can still view them!");
     } else {
+      setShareId(sid);
       toast.success("Your results have been saved!");
     }
   };
 
   const handleRestart = () => {
     setResults(null);
+    setShareId(null);
     setAppState("landing");
   };
 
@@ -59,6 +62,7 @@ const Index = () => {
         <ResultsPage 
           results={results}
           onRestart={handleRestart}
+          shareId={shareId}
         />
       )}
     </>

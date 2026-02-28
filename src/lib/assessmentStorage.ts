@@ -26,7 +26,7 @@ export interface SavedAssessment {
 export async function saveAssessment(
   answers: AssessmentAnswers,
   results: AssessmentResult
-): Promise<{ id: string | null; error: Error | null }> {
+): Promise<{ id: string | null; shareId: string | null; error: Error | null }> {
   try {
     const sessionId = getSessionId();
     
@@ -40,19 +40,42 @@ export async function saveAssessment(
         recommended_skills: results.recommendedSkills as unknown as Json,
         session_id: sessionId,
       })
-      .select("id")
+      .select("id, share_id")
       .single();
 
     if (error) {
       console.error("Error saving assessment:", error);
-      return { id: null, error: new Error(error.message) };
+      return { id: null, shareId: null, error: new Error(error.message) };
     }
 
-    return { id: data.id, error: null };
+    return { id: data.id, shareId: data.share_id, error: null };
   } catch (err) {
     console.error("Error saving assessment:", err);
-    return { id: null, error: err as Error };
+    return { id: null, shareId: null, error: err as Error };
   }
+}
+
+export async function getAssessmentByShareId(shareId: string): Promise<SavedAssessment | null> {
+  const { data, error } = await supabase
+    .from("assessments")
+    .select("*")
+    .eq("share_id", shareId)
+    .single();
+
+  if (error || !data) {
+    console.error("Error fetching shared assessment:", error);
+    return null;
+  }
+
+  return {
+    id: data.id,
+    created_at: data.created_at,
+    personality_answers: data.personality_answers as unknown as Record<string, number>,
+    passion_areas: data.passion_areas,
+    current_skills: data.current_skills,
+    career_matches: data.career_matches as unknown as CareerMatch[],
+    recommended_skills: data.recommended_skills as unknown as SkillRecommendation[],
+  };
 }
 
 export async function getRecentAssessments(limit = 5): Promise<SavedAssessment[]> {
