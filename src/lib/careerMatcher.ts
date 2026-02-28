@@ -75,9 +75,9 @@ export function calculateCareerMatches(answers: AssessmentAnswers): AssessmentRe
     };
   });
 
-  // Sort by score and get top 2
+  // Sort by score and get top 3
   careerScores.sort((a, b) => b.score - a.score);
-  const topCareers = careerScores.slice(0, 2);
+  const topCareers = careerScores.slice(0, 3);
 
   // Generate skill recommendations
   const recommendedSkills = generateSkillRecommendations(answers, topCareers);
@@ -113,13 +113,14 @@ function generateSkillRecommendations(
   // Add adjacency bonus for skills related to existing skills
   const adjacencyMap: Record<string, string[]> = {
     research: ["data-analysis", "communications"],
-    "data-analysis": ["technical", "finance", "research"],
-    "project-management": ["communications", "technical"],
+    "data-analysis": ["technical", "finance", "research", "supply-chain"],
+    "project-management": ["communications", "technical", "supply-chain"],
     communications: ["social-media", "design", "research"],
     "social-media": ["communications", "design"],
-    finance: ["data-analysis", "project-management"],
+    finance: ["data-analysis", "project-management", "supply-chain"],
     design: ["social-media", "technical", "communications"],
     technical: ["data-analysis", "design"],
+    "supply-chain": ["project-management", "data-analysis", "finance"],
   };
 
   existingSkills.forEach((skill) => {
@@ -176,6 +177,8 @@ function generateSkillReason(
         : `Visual communication skills are increasingly valued in ${careers}.`,
     technical: (careers) => 
       `Tech skills unlock opportunities in ${careers}. Python or data tools recommended.`,
+    "supply-chain": (careers) => 
+      `Supply chain expertise is critical for ${careers} as Scope 3 reporting grows.`,
   };
 
   const template = reasonTemplates[skill];
