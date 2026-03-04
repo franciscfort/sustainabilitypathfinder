@@ -1,5 +1,6 @@
 import { Leaf, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { SocialProof } from "@/components/SocialProof";
 
 interface LandingPageProps {
   onStart: () => void;
@@ -69,6 +70,9 @@ export function LandingPage({ onStart }: LandingPageProps) {
           </div>
         </div>
       </section>
+
+      {/* Social Proof */}
+      <SocialProof />
 
       {/* Footer */}
       <footer className="px-4 py-6 text-center text-sm text-muted-foreground border-t">
