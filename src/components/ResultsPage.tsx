@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useRef, useState, useCallback } from "react";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
+import { RatingDialog } from "@/components/RatingDialog";
 
 interface ResultsPageProps {
   results: AssessmentResult;
@@ -176,6 +177,7 @@ export function ResultsPage({ results, onRestart, shareId }: ResultsPageProps) {
               <Download className="w-4 h-4 mr-2" />
               Download Image
             </Button>
+            <RatingDialog />
           </div>
           <div>
             <Button variant="outline" size="lg" onClick={onRestart} className="group">
