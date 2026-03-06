@@ -14,49 +14,32 @@ interface ResultsPageProps {
   results: AssessmentResult;
   onRestart: () => void;
   shareId?: string | null;
+  assessmentId?: string | null;
 }
 
-export function ResultsPage({ results, onRestart, shareId }: ResultsPageProps) {
+export function ResultsPage({ results, onRestart, shareId, assessmentId }: ResultsPageProps) {
   const { topCareers, recommendedSkills } = results;
-  const [copied, setCopied] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  const shareUrl = shareId ? `${window.location.origin}/results/${shareId}` : "";
-  const shareText = `Check out my sustainability career matches: ${topCareers.map(m => m.career.title).join(", ")}!`;
-
-  const handleShare = async () => {
-    if (!shareId) return;
-    await navigator.clipboard.writeText(shareUrl);
-    setCopied(true);
-    toast.success("Share link copied to clipboard!");
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleTwitterShare = () => {
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, "_blank");
-  };
-
-  const handleLinkedInShare = () => {
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, "_blank");
-  };
-
-  const handleInstagramShare = () => {
-    // Instagram doesn't support URL sharing; copy link and notify user
-    navigator.clipboard.writeText(shareUrl);
-    toast.success("Link copied! Paste it into your Instagram story or bio.");
-  };
-
-  const handleDownloadImage = useCallback(async () => {
+  const handleDownloadPdf = useCallback(async () => {
     if (!resultsRef.current) return;
     try {
       const dataUrl = await toPng(resultsRef.current, { quality: 0.95, backgroundColor: "#f7f5f0" });
-      const link = document.createElement("a");
-      link.download = "career-results.png";
-      link.href = dataUrl;
-      link.click();
-      toast.success("Image downloaded!");
+      const img = new Image();
+      img.src = dataUrl;
+      await new Promise((resolve) => { img.onload = resolve; });
+
+      const pxWidth = img.width;
+      const pxHeight = img.height;
+      const pdfWidth = 210; // A4 mm
+      const pdfHeight = (pxHeight / pxWidth) * pdfWidth;
+
+      const pdf = new jsPDF({ orientation: pdfHeight > pdfWidth ? "portrait" : "landscape", unit: "mm", format: [pdfWidth, pdfHeight] });
+      pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("career-results.pdf");
+      toast.success("PDF downloaded!");
     } catch {
-      toast.error("Failed to generate image. Please try again.");
+      toast.error("Failed to generate PDF. Please try again.");
     }
   }, []);
 
