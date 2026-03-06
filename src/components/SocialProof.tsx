@@ -14,9 +14,9 @@ export function SocialProof() {
 
   useEffect(() => {
     async function fetch() {
-      const { data: ratings } = await supabase.rpc("get_public_ratings", {
+      const { data: ratings } = await supabase.rpc("get_public_ratings" as any, {
         _limit: 50,
-      });
+      }) as { data: { rating: number; comment: string | null; created_at: string }[] | null };
 
       if (!ratings || ratings.length === 0) return;
 
