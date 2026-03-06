@@ -77,6 +77,38 @@ export type Database = {
         }
         Relationships: []
       }
+      email_captures: {
+        Row: {
+          assessment_id: string | null
+          created_at: string
+          email: string
+          id: string
+          session_id: string | null
+        }
+        Insert: {
+          assessment_id?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          session_id?: string | null
+        }
+        Update: {
+          assessment_id?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_captures_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
