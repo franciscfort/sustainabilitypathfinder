@@ -13,6 +13,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { ratingSchema, checkClientRateLimit, sanitizeText } from "@/lib/validation";
 
 export function RatingDialog() {
   const [open, setOpen] = useState(false);
@@ -22,20 +23,37 @@ export function RatingDialog() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
-    if (rating === 0) {
-      toast.error("Please select a rating");
+    // Client-side rate limiting (defense-in-depth)
+    if (!checkClientRateLimit("rating", 5, 60_000)) {
+      toast.error("Too many requests. Please wait a moment and try again.");
+      return;
+    }
+
+    // Schema-based validation with Zod
+    const parsed = ratingSchema.safeParse({
+      rating,
+      comment: comment || null,
+    });
+
+    if (!parsed.success) {
+      toast.error(parsed.error.errors[0].message);
       return;
     }
 
     setIsSubmitting(true);
     const { error } = await supabase.from("app_ratings").insert({
-      rating,
-      comment: comment.trim() || null,
+      rating: parsed.data.rating,
+      comment: parsed.data.comment ? sanitizeText(parsed.data.comment) : null,
       session_id: sessionStorage.getItem("session_id"),
     });
     setIsSubmitting(false);
 
     if (error) {
+      // Handle rate limit from RLS gracefully
+      if (error.message?.includes("row-level security")) {
+        toast.error("Too many requests. Please wait a moment and try again.");
+        return;
+      }
       toast.error("Failed to submit rating. Please try again.");
       return;
     }
@@ -92,7 +110,7 @@ export function RatingDialog() {
             </p>
           )}
 
-          {/* Comment */}
+          {/* Comment - sanitized and length-limited */}
           <Textarea
             placeholder="Leave a comment (optional)..."
             value={comment}

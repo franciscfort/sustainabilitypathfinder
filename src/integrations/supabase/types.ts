@@ -114,7 +114,15 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      check_rate_limit: {
+        Args: {
+          _max_requests?: number
+          _session_id: string
+          _table_name: string
+          _window_minutes?: number
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
