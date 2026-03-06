@@ -1,12 +1,14 @@
-import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Share2, Check, Link, Download } from "lucide-react";
+import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AssessmentResult } from "@/lib/careerMatcher";
 import { cn } from "@/lib/utils";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useCallback } from "react";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
+import jsPDF from "jspdf";
 import { RatingDialog } from "@/components/RatingDialog";
+import { EmailCaptureDialog } from "@/components/EmailCaptureDialog";
 
 interface ResultsPageProps {
   results: AssessmentResult;
