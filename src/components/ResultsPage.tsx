@@ -9,6 +9,7 @@ import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import { RatingDialog } from "@/components/RatingDialog";
 import { EmailCaptureDialog } from "@/components/EmailCaptureDialog";
+import { getSessionId } from "@/lib/assessmentStorage";
 
 interface ResultsPageProps {
   results: AssessmentResult;
@@ -141,6 +142,7 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
             <EmailCaptureDialog
               onEmailSubmitted={handleDownloadPdf}
               assessmentId={assessmentId}
+              sessionId={getSessionId()}
             />
             <RatingDialog />
           </div>
