@@ -17,6 +17,8 @@ function getSessionId(): string {
   return sessionId;
 }
 
+export { getSessionId };
+
 export interface SavedAssessment {
   id: string;
   created_at: string;
@@ -76,54 +78,57 @@ export async function saveAssessment(
   }
 }
 
+/**
+ * Fetch a shared assessment via secure RPC function (not direct table access).
+ * The RPC function validates share_id format and uses SECURITY DEFINER.
+ */
 export async function getAssessmentByShareId(shareId: string): Promise<SavedAssessment | null> {
-  // Validate shareId format (must be UUID)
+  // Client-side UUID validation
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (!uuidRegex.test(shareId)) {
     console.error("Invalid share ID format");
     return null;
   }
 
-  const { data, error } = await supabase
-    .from("assessments")
-    .select("*")
-    .eq("share_id", shareId)
-    .single();
+  const { data, error } = await supabase.rpc("get_assessment_by_share_id", {
+    _share_id: shareId,
+  });
 
-  if (error || !data) {
+  if (error || !data || data.length === 0) {
     console.error("Error fetching shared assessment:", error);
     return null;
   }
 
+  const row = data[0];
   return {
-    id: data.id,
-    created_at: data.created_at,
-    personality_answers: data.personality_answers as unknown as Record<string, number>,
-    passion_areas: data.passion_areas,
-    current_skills: data.current_skills,
-    career_matches: data.career_matches as unknown as CareerMatch[],
-    recommended_skills: data.recommended_skills as unknown as SkillRecommendation[],
+    id: row.id,
+    created_at: row.created_at,
+    personality_answers: row.personality_answers as unknown as Record<string, number>,
+    passion_areas: row.passion_areas,
+    current_skills: row.current_skills,
+    career_matches: row.career_matches as unknown as CareerMatch[],
+    recommended_skills: row.recommended_skills as unknown as SkillRecommendation[],
   };
 }
 
+/**
+ * Fetch recent assessments for the current session via secure RPC function.
+ */
 export async function getRecentAssessments(limit = 5): Promise<SavedAssessment[]> {
-  // Clamp limit to prevent abuse
   const safeLimit = Math.min(Math.max(1, limit), 20);
   const sessionId = getSessionId();
 
-  const { data, error } = await supabase
-    .from("assessments")
-    .select("*")
-    .eq("session_id", sessionId)
-    .order("created_at", { ascending: false })
-    .limit(safeLimit);
+  const { data, error } = await supabase.rpc("get_recent_assessments", {
+    _session_id: sessionId,
+    _limit: safeLimit,
+  });
 
   if (error) {
     console.error("Error fetching assessments:", error);
     return [];
   }
 
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     id: row.id,
     created_at: row.created_at,
     personality_answers: row.personality_answers as unknown as Record<string, number>,
