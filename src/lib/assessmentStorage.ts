@@ -49,29 +49,26 @@ export async function saveAssessment(
     const sessionId = getSessionId();
     const validAnswers = validation.data;
 
-    const { data, error } = await supabase
-      .from("assessments")
-      .insert({
-        personality_answers: validAnswers.personality as unknown as Json,
-        passion_areas: validAnswers.passions,
-        current_skills: validAnswers.skills,
-        career_matches: results.topCareers as unknown as Json,
-        recommended_skills: results.recommendedSkills as unknown as Json,
-        session_id: sessionId,
-      })
-      .select("id, share_id")
-      .single();
+    // Use RPC to insert and return id + share_id (bypasses restrictive SELECT policy)
+    const { data, error } = await supabase.rpc("create_assessment", {
+      _personality_answers: validAnswers.personality as unknown as Json,
+      _passion_areas: validAnswers.passions,
+      _current_skills: validAnswers.skills,
+      _career_matches: results.topCareers as unknown as Json,
+      _recommended_skills: results.recommendedSkills as unknown as Json,
+      _session_id: sessionId,
+    });
 
     if (error) {
-      // Handle rate limit from RLS gracefully
-      if (error.message?.includes("row-level security")) {
+      if (error.message?.includes("Rate limit")) {
         return { id: null, shareId: null, error: new Error("Too many requests. Please wait.") };
       }
       console.error("Error saving assessment:", error);
       return { id: null, shareId: null, error: new Error(error.message) };
     }
 
-    return { id: data.id, shareId: data.share_id, error: null };
+    const row = Array.isArray(data) ? data[0] : data;
+    return { id: row?.id ?? null, shareId: row?.share_id ?? null, error: null };
   } catch (err) {
     console.error("Error saving assessment:", err);
     return { id: null, shareId: null, error: err as Error };

@@ -123,6 +123,20 @@ export type Database = {
         }
         Returns: boolean
       }
+      create_assessment: {
+        Args: {
+          _career_matches: Json
+          _current_skills: string[]
+          _passion_areas: string[]
+          _personality_answers: Json
+          _recommended_skills: Json
+          _session_id: string
+        }
+        Returns: {
+          id: string
+          share_id: string
+        }[]
+      }
       get_assessment_by_share_id: {
         Args: { _share_id: string }
         Returns: {
