@@ -67,7 +67,8 @@ export async function saveAssessment(
       return { id: null, shareId: null, error: new Error(error.message) };
     }
 
-    return { id: data.id, shareId: data.share_id, error: null };
+    const row = Array.isArray(data) ? data[0] : data;
+    return { id: row?.id ?? null, shareId: row?.share_id ?? null, error: null };
   } catch (err) {
     console.error("Error saving assessment:", err);
     return { id: null, shareId: null, error: err as Error };
