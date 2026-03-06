@@ -12,6 +12,7 @@ const Index = () => {
   const [appState, setAppState] = useState<AppState>("landing");
   const [results, setResults] = useState<AssessmentResult | null>(null);
   const [shareId, setShareId] = useState<string | null>(null);
+  const [assessmentId, setAssessmentId] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
   const handleStartAssessment = () => {
@@ -25,7 +26,7 @@ const Index = () => {
 
     // Save to database
     setIsSaving(true);
-    const { shareId: sid, error } = await saveAssessment(answers, calculatedResults);
+    const { id, shareId: sid, error } = await saveAssessment(answers, calculatedResults);
     setIsSaving(false);
 
     if (error) {
@@ -33,6 +34,7 @@ const Index = () => {
       toast.error("Couldn't save your results, but you can still view them!");
     } else {
       setShareId(sid);
+      setAssessmentId(id);
       toast.success("Your results have been saved!");
     }
   };
@@ -40,6 +42,7 @@ const Index = () => {
   const handleRestart = () => {
     setResults(null);
     setShareId(null);
+    setAssessmentId(null);
     setAppState("landing");
   };
 
@@ -63,6 +66,7 @@ const Index = () => {
           results={results}
           onRestart={handleRestart}
           shareId={shareId}
+          assessmentId={assessmentId}
         />
       )}
     </>
