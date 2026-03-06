@@ -1,8 +1,12 @@
 import { supabase } from "@/integrations/supabase/client";
 import { AssessmentAnswers, AssessmentResult, CareerMatch, SkillRecommendation } from "./careerMatcher";
 import { Json } from "@/integrations/supabase/types";
+import { assessmentAnswersSchema, checkClientRateLimit } from "./validation";
 
-// Generate a session ID for anonymous users
+/**
+ * Generate or retrieve a stable anonymous session ID.
+ * Used for rate limiting and associating assessments with sessions.
+ */
 function getSessionId(): string {
   const key = "sustainability-pathfinder-session";
   let sessionId = localStorage.getItem(key);
@@ -28,14 +32,27 @@ export async function saveAssessment(
   results: AssessmentResult
 ): Promise<{ id: string | null; shareId: string | null; error: Error | null }> {
   try {
+    // Client-side rate limiting (defense-in-depth; DB RLS enforces server-side)
+    if (!checkClientRateLimit("assessment", 10, 60_000)) {
+      return { id: null, shareId: null, error: new Error("Too many requests. Please wait.") };
+    }
+
+    // Validate inputs against schema before sending to DB
+    const validation = assessmentAnswersSchema.safeParse(answers);
+    if (!validation.success) {
+      console.error("Assessment validation failed:", validation.error.errors);
+      return { id: null, shareId: null, error: new Error(validation.error.errors[0].message) };
+    }
+
     const sessionId = getSessionId();
-    
+    const validAnswers = validation.data;
+
     const { data, error } = await supabase
       .from("assessments")
       .insert({
-        personality_answers: answers.personality as unknown as Json,
-        passion_areas: answers.passions,
-        current_skills: answers.skills,
+        personality_answers: validAnswers.personality as unknown as Json,
+        passion_areas: validAnswers.passions,
+        current_skills: validAnswers.skills,
         career_matches: results.topCareers as unknown as Json,
         recommended_skills: results.recommendedSkills as unknown as Json,
         session_id: sessionId,
@@ -44,6 +61,10 @@ export async function saveAssessment(
       .single();
 
     if (error) {
+      // Handle rate limit from RLS gracefully
+      if (error.message?.includes("row-level security")) {
+        return { id: null, shareId: null, error: new Error("Too many requests. Please wait.") };
+      }
       console.error("Error saving assessment:", error);
       return { id: null, shareId: null, error: new Error(error.message) };
     }
@@ -56,6 +77,13 @@ export async function saveAssessment(
 }
 
 export async function getAssessmentByShareId(shareId: string): Promise<SavedAssessment | null> {
+  // Validate shareId format (must be UUID)
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!uuidRegex.test(shareId)) {
+    console.error("Invalid share ID format");
+    return null;
+  }
+
   const { data, error } = await supabase
     .from("assessments")
     .select("*")
@@ -79,21 +107,22 @@ export async function getAssessmentByShareId(shareId: string): Promise<SavedAsse
 }
 
 export async function getRecentAssessments(limit = 5): Promise<SavedAssessment[]> {
+  // Clamp limit to prevent abuse
+  const safeLimit = Math.min(Math.max(1, limit), 20);
   const sessionId = getSessionId();
-  
+
   const { data, error } = await supabase
     .from("assessments")
     .select("*")
     .eq("session_id", sessionId)
     .order("created_at", { ascending: false })
-    .limit(limit);
+    .limit(safeLimit);
 
   if (error) {
     console.error("Error fetching assessments:", error);
     return [];
   }
 
-  // Map the database rows to our typed interface
   return (data || []).map(row => ({
     id: row.id,
     created_at: row.created_at,

@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
-
-const emailSchema = z.string().trim().email("Please enter a valid email address").max(255);
+import { emailSchema, checkClientRateLimit } from "@/lib/validation";
 
 interface EmailCaptureDialogProps {
   onEmailSubmitted: () => void;
@@ -26,6 +24,13 @@ export function EmailCaptureDialog({ onEmailSubmitted, assessmentId, sessionId }
     e.preventDefault();
     setError("");
 
+    // Client-side rate limiting (defense-in-depth; DB enforces server-side)
+    if (!checkClientRateLimit("email_capture", 5, 60_000)) {
+      toast.error("Too many requests. Please wait a moment and try again.");
+      return;
+    }
+
+    // Schema-based validation with Zod
     const result = emailSchema.safeParse(email);
     if (!result.success) {
       setError(result.error.errors[0].message);
@@ -42,7 +47,14 @@ export function EmailCaptureDialog({ onEmailSubmitted, assessmentId, sessionId }
           session_id: sessionId ?? null,
         });
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        // Handle rate limit 429-style errors from RLS gracefully
+        if (dbError.message?.includes("row-level security")) {
+          toast.error("Too many requests. Please wait a moment and try again.");
+          return;
+        }
+        throw dbError;
+      }
 
       setOpen(false);
       setEmail("");
