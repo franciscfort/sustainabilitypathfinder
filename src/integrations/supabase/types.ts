@@ -123,6 +123,48 @@ export type Database = {
         }
         Returns: boolean
       }
+      get_assessment_by_share_id: {
+        Args: { _share_id: string }
+        Returns: {
+          career_matches: Json
+          created_at: string
+          current_skills: string[]
+          id: string
+          passion_areas: string[]
+          personality_answers: Json
+          recommended_skills: Json
+          session_id: string | null
+          share_id: string | null
+          user_id: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "assessments"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
+      get_recent_assessments: {
+        Args: { _limit?: number; _session_id: string }
+        Returns: {
+          career_matches: Json
+          created_at: string
+          current_skills: string[]
+          id: string
+          passion_areas: string[]
+          personality_answers: Json
+          recommended_skills: Json
+          session_id: string | null
+          share_id: string | null
+          user_id: string | null
+        }[]
+        SetofOptions: {
+          from: "*"
+          to: "assessments"
+          isOneToOne: false
+          isSetofReturn: true
+        }
+      }
     }
     Enums: {
       [_ in never]: never
