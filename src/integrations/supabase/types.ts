@@ -158,6 +158,14 @@ export type Database = {
           isSetofReturn: true
         }
       }
+      get_public_ratings: {
+        Args: { _limit?: number }
+        Returns: {
+          comment: string
+          created_at: string
+          rating: number
+        }[]
+      }
       get_recent_assessments: {
         Args: { _limit?: number; _session_id: string }
         Returns: {
