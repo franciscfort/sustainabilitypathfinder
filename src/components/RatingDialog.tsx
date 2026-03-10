@@ -45,7 +45,7 @@ export function RatingDialog() {
     const { error } = await supabase.from("app_ratings").insert({
       rating: parsed.data.rating,
       comment: parsed.data.comment ? sanitizeText(parsed.data.comment) : null,
-      session_id: sessionStorage.getItem("session_id"),
+      session_id: getSessionId(),
     });
     setIsSubmitting(false);
 
