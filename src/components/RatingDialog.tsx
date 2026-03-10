@@ -14,6 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ratingSchema, checkClientRateLimit, sanitizeText } from "@/lib/validation";
+import { getSessionId } from "@/lib/assessmentStorage";
 
 export function RatingDialog() {
   const [open, setOpen] = useState(false);
