@@ -137,7 +137,7 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
                 >
-                  📚 Browse our sustainability eBooks
+                  📚 Get the Complete Career Toolkit
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
