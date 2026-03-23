@@ -129,8 +129,17 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
                 title="Build your network"
                 description="Join sustainability communities, attend events, and connect with professionals in your target career area."
               />
-              <div className="pt-4 text-center text-sm text-muted-foreground">
-                <p>🚀 Coming soon: Personalized learning roadmaps and course recommendations</p>
+              <div className="pt-4 text-center space-y-2">
+                <p className="text-sm text-muted-foreground">🚀 Coming soon: Personalized learning roadmaps and course recommendations</p>
+                <a
+                  href="https://nestuge.me/franciscfort"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                >
+                  📚 Browse our sustainability eBooks
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             </CardContent>
           </Card>
