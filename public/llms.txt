@@ -1,0 +1,14 @@
+# Sustainability Career Pathfinder
+
+> A free assessment that matches your personality, interests, and skills to the best-fit sustainability career paths and the high-demand skills to learn next.
+
+The Sustainability Career Pathfinder is an interactive web tool. Users complete a 3–5 minute assessment covering personality traits, sustainability interests, and current skills. The tool returns 1–2 best-fit sustainability career paths with explanations and 2–3 high-demand skills to learn next. Results can be downloaded as a PDF and shared via a unique URL.
+
+## Pages
+
+- [Home](/): Landing page with an overview of the assessment and a Start button.
+- [Shared results](/results/:shareId): Read-only view of a previously generated career match result.
+
+## Optional
+
+- [Career toolkit eBooks](https://nestuge.me/franciscfort): External resource with longer-form career guides.
