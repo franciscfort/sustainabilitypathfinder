@@ -84,11 +84,14 @@ export function RatingDialog() {
         </DialogHeader>
         <div className="space-y-6 pt-2">
           {/* Star Rating */}
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center gap-2" role="radiogroup" aria-label="Star rating">
             {[1, 2, 3, 4, 5].map((star) => (
               <button
                 key={star}
                 type="button"
+                role="radio"
+                aria-checked={rating === star}
+                aria-label={`Rate ${star} star${star === 1 ? "" : "s"}`}
                 onClick={() => setRating(star)}
                 onMouseEnter={() => setHoveredRating(star)}
                 onMouseLeave={() => setHoveredRating(0)}
@@ -113,6 +116,7 @@ export function RatingDialog() {
 
           {/* Comment - sanitized and length-limited */}
           <Textarea
+            aria-label="Feedback comment"
             placeholder="Leave a comment (optional)..."
             value={comment}
             onChange={(e) => setComment(e.target.value.slice(0, 500))}

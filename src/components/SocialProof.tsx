@@ -34,8 +34,9 @@ export function SocialProof() {
   if (!data) return null;
 
   return (
-    <section className="px-4 py-12">
+    <section className="px-4 py-12" aria-labelledby="social-proof-heading">
       <div className="max-w-3xl mx-auto text-center animate-fade-in">
+        <h2 id="social-proof-heading" className="text-2xl font-bold mb-6">What people are saying</h2>
         {/* Average Rating */}
         <div className="flex items-center justify-center gap-2 mb-2">
           {[1, 2, 3, 4, 5].map((star) => (
