@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { LandingPage } from "@/components/LandingPage";
 import { AssessmentPage } from "@/components/AssessmentPage";
 import { ResultsPage } from "@/components/ResultsPage";
@@ -50,8 +51,27 @@ const Index = () => {
     setAppState("landing");
   };
 
+  const titles: Record<AppState, string> = {
+    landing: "Sustainability Career Pathfinder — find your path",
+    assessment: "Take the Sustainability Career Assessment",
+    results: "Your Sustainability Career Match Results",
+  };
+  const descriptions: Record<AppState, string> = {
+    landing: "Take a free 3–5 minute assessment to discover sustainability career paths that fit your personality, interests, and skills.",
+    assessment: "Answer questions about your personality, interests, and skills to get personalized sustainability career recommendations.",
+    results: "Your personalized sustainability career paths and high-demand skills to learn next.",
+  };
+
   return (
     <>
+      <Helmet>
+        <title>{titles[appState]}</title>
+        <meta name="description" content={descriptions[appState]} />
+        <link rel="canonical" href="https://sustainabilitypathfinder.lovable.app/" />
+        <meta property="og:title" content={titles[appState]} />
+        <meta property="og:description" content={descriptions[appState]} />
+        <meta property="og:url" content="https://sustainabilitypathfinder.lovable.app/" />
+      </Helmet>
       {appState === "landing" && (
         <LandingPage onStart={handleStartAssessment} />
       )}
