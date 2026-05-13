@@ -168,6 +168,47 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
   );
 }
 
+function GenderSection({
+  value,
+  onChange,
+}: {
+  value: Gender | undefined;
+  onChange: (value: Gender) => void;
+}) {
+  return (
+    <div className="grid gap-3" role="radiogroup" aria-label="Gender">
+      {genderOptions.map((opt) => {
+        const isSelected = value === opt.value;
+        return (
+          <button
+            key={opt.value}
+            type="button"
+            role="radio"
+            aria-checked={isSelected}
+            onClick={() => onChange(opt.value)}
+            className={cn(
+              "p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-center gap-3",
+              isSelected
+                ? "border-primary bg-primary/5 shadow-card"
+                : "border-border hover:border-primary/30 hover:bg-muted/50"
+            )}
+          >
+            <div
+              className={cn(
+                "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-all",
+                isSelected ? "bg-primary border-primary" : "border-muted-foreground/30"
+              )}
+            >
+              {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
+            </div>
+            <span className={cn("font-medium", isSelected && "text-primary")}>{opt.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function PersonalitySection({
   values,
   onChange,
