@@ -57,6 +57,7 @@ export async function saveAssessment(
       _career_matches: results.topCareers as unknown as Json,
       _recommended_skills: results.recommendedSkills as unknown as Json,
       _session_id: sessionId,
+      _gender: answers.gender ?? null,
     });
 
     if (error) {

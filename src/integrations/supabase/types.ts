@@ -43,6 +43,7 @@ export type Database = {
           career_matches: Json
           created_at: string
           current_skills: string[]
+          gender: string | null
           id: string
           passion_areas: string[]
           personality_answers: Json
@@ -55,6 +56,7 @@ export type Database = {
           career_matches: Json
           created_at?: string
           current_skills: string[]
+          gender?: string | null
           id?: string
           passion_areas: string[]
           personality_answers: Json
@@ -67,6 +69,7 @@ export type Database = {
           career_matches?: Json
           created_at?: string
           current_skills?: string[]
+          gender?: string | null
           id?: string
           passion_areas?: string[]
           personality_answers?: Json
@@ -123,26 +126,43 @@ export type Database = {
         }
         Returns: boolean
       }
-      create_assessment: {
-        Args: {
-          _career_matches: Json
-          _current_skills: string[]
-          _passion_areas: string[]
-          _personality_answers: Json
-          _recommended_skills: Json
-          _session_id: string
-        }
-        Returns: {
-          id: string
-          share_id: string
-        }[]
-      }
+      create_assessment:
+        | {
+            Args: {
+              _career_matches: Json
+              _current_skills: string[]
+              _passion_areas: string[]
+              _personality_answers: Json
+              _recommended_skills: Json
+              _session_id: string
+            }
+            Returns: {
+              id: string
+              share_id: string
+            }[]
+          }
+        | {
+            Args: {
+              _career_matches: Json
+              _current_skills: string[]
+              _gender?: string
+              _passion_areas: string[]
+              _personality_answers: Json
+              _recommended_skills: Json
+              _session_id: string
+            }
+            Returns: {
+              id: string
+              share_id: string
+            }[]
+          }
       get_assessment_by_share_id: {
         Args: { _share_id: string }
         Returns: {
           career_matches: Json
           created_at: string
           current_skills: string[]
+          gender: string | null
           id: string
           passion_areas: string[]
           personality_answers: Json
@@ -172,6 +192,7 @@ export type Database = {
           career_matches: Json
           created_at: string
           current_skills: string[]
+          gender: string | null
           id: string
           passion_areas: string[]
           personality_answers: Json
