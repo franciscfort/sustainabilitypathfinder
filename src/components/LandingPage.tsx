@@ -49,8 +49,9 @@ export function LandingPage({ onStart }: LandingPageProps) {
       </main>
 
       {/* Features Section */}
-      <section className="px-4 py-16 gradient-soft">
+      <section className="px-4 py-16 gradient-soft" aria-labelledby="features-heading">
         <div className="max-w-5xl mx-auto">
+          <h2 id="features-heading" className="text-3xl font-bold text-center mb-10">What you'll get</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <FeatureCard
               icon="🎯"
