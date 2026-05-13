@@ -19,6 +19,7 @@ const VALID_SKILL_KEYS = Object.keys(skillLabels);
  * - skills: only known skill keys, max 9
  */
 export const assessmentAnswersSchema = z.object({
+  gender: z.enum(["female", "male", "non-binary", "prefer-not-to-say"]).optional(),
   personality: z
     .record(
       z.enum(VALID_PERSONALITY_KEYS as [string, ...string[]]),
