@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { personalityLabels, passionLabels, skillLabels } from "@/data/careerPaths";
-import { AssessmentAnswers } from "@/lib/careerMatcher";
+import { AssessmentAnswers, Gender } from "@/lib/careerMatcher";
 import { cn } from "@/lib/utils";
 
 interface AssessmentPageProps {
@@ -12,9 +12,14 @@ interface AssessmentPageProps {
   onBack: () => void;
 }
 
-type Section = "personality" | "passions" | "skills";
+type Section = "gender" | "personality" | "passions" | "skills";
 
 const sections: { id: Section; title: string; subtitle: string }[] = [
+  {
+    id: "gender",
+    title: "About You",
+    subtitle: "How do you identify? This helps us tailor your experience.",
+  },
   {
     id: "personality",
     title: "Work Style & Personality",
@@ -32,8 +37,16 @@ const sections: { id: Section; title: string; subtitle: string }[] = [
   },
 ];
 
+const genderOptions: { value: Gender; label: string }[] = [
+  { value: "female", label: "Female" },
+  { value: "male", label: "Male" },
+  { value: "non-binary", label: "Non-binary" },
+  { value: "prefer-not-to-say", label: "Prefer not to say" },
+];
+
 export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
   const [currentSection, setCurrentSection] = useState(0);
+  const [gender, setGender] = useState<Gender | undefined>(undefined);
   const [personality, setPersonality] = useState<Record<string, number>>({});
   const [passions, setPassions] = useState<string[]>([]);
   const [skills, setSkills] = useState<string[]>([]);
@@ -45,7 +58,7 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
     if (currentSection < sections.length - 1) {
       setCurrentSection((prev) => prev + 1);
     } else {
-      onComplete({ personality, passions, skills });
+      onComplete({ gender, personality, passions, skills });
     }
   };
 
@@ -59,6 +72,8 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
 
   const canProceed = () => {
     switch (section.id) {
+      case "gender":
+        return !!gender;
       case "personality":
         return Object.keys(personality).length >= 3;
       case "passions":
@@ -95,6 +110,10 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
             <h1 className="text-2xl md:text-3xl font-bold mb-2">{section.title}</h1>
             <p className="text-muted-foreground">{section.subtitle}</p>
           </div>
+
+          {section.id === "gender" && (
+            <GenderSection value={gender} onChange={setGender} />
+          )}
 
           {section.id === "personality" && (
             <PersonalitySection 
@@ -145,6 +164,47 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
           </Button>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function GenderSection({
+  value,
+  onChange,
+}: {
+  value: Gender | undefined;
+  onChange: (value: Gender) => void;
+}) {
+  return (
+    <div className="grid gap-3" role="radiogroup" aria-label="Gender">
+      {genderOptions.map((opt) => {
+        const isSelected = value === opt.value;
+        return (
+          <button
+            key={opt.value}
+            type="button"
+            role="radio"
+            aria-checked={isSelected}
+            onClick={() => onChange(opt.value)}
+            className={cn(
+              "p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-center gap-3",
+              isSelected
+                ? "border-primary bg-primary/5 shadow-card"
+                : "border-border hover:border-primary/30 hover:bg-muted/50"
+            )}
+          >
+            <div
+              className={cn(
+                "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-all",
+                isSelected ? "bg-primary border-primary" : "border-muted-foreground/30"
+              )}
+            >
+              {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
+            </div>
+            <span className={cn("font-medium", isSelected && "text-primary")}>{opt.label}</span>
+          </button>
+        );
+      })}
     </div>
   );
 }

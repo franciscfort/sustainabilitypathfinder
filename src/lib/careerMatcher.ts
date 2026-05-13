@@ -1,6 +1,9 @@
 import { careerPaths, CareerPath, skillLabels } from "@/data/careerPaths";
 
+export type Gender = "female" | "male" | "non-binary" | "prefer-not-to-say";
+
 export interface AssessmentAnswers {
+  gender?: Gender;
   personality: Record<string, number>;
   passions: string[];
   skills: string[];
