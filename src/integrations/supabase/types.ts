@@ -41,6 +41,7 @@ export type Database = {
       assessments: {
         Row: {
           career_matches: Json
+          country: string | null
           created_at: string
           current_skills: string[]
           gender: string | null
@@ -54,6 +55,7 @@ export type Database = {
         }
         Insert: {
           career_matches: Json
+          country?: string | null
           created_at?: string
           current_skills: string[]
           gender?: string | null
@@ -67,6 +69,7 @@ export type Database = {
         }
         Update: {
           career_matches?: Json
+          country?: string | null
           created_at?: string
           current_skills?: string[]
           gender?: string | null
@@ -156,10 +159,27 @@ export type Database = {
               share_id: string
             }[]
           }
+        | {
+            Args: {
+              _career_matches: Json
+              _country?: string
+              _current_skills: string[]
+              _gender?: string
+              _passion_areas: string[]
+              _personality_answers: Json
+              _recommended_skills: Json
+              _session_id: string
+            }
+            Returns: {
+              id: string
+              share_id: string
+            }[]
+          }
       get_assessment_by_share_id: {
         Args: { _share_id: string }
         Returns: {
           career_matches: Json
+          country: string | null
           created_at: string
           current_skills: string[]
           gender: string | null
@@ -178,6 +198,13 @@ export type Database = {
           isSetofReturn: true
         }
       }
+      get_country_stats: {
+        Args: never
+        Returns: {
+          count: number
+          country: string
+        }[]
+      }
       get_public_ratings: {
         Args: { _limit?: number }
         Returns: {
@@ -190,6 +217,7 @@ export type Database = {
         Args: { _limit?: number; _session_id: string }
         Returns: {
           career_matches: Json
+          country: string | null
           created_at: string
           current_skills: string[]
           gender: string | null
