@@ -2,6 +2,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { AssessmentAnswers, AssessmentResult, CareerMatch, SkillRecommendation } from "./careerMatcher";
 import { Json } from "@/integrations/supabase/types";
 import { assessmentAnswersSchema, checkClientRateLimit } from "./validation";
+import { detectCountry } from "./geo";
 
 /**
  * Generate or retrieve a stable anonymous session ID.
@@ -48,6 +49,7 @@ export async function saveAssessment(
 
     const sessionId = getSessionId();
     const validAnswers = validation.data;
+    const country = await detectCountry();
 
     // Use RPC to insert and return id + share_id (bypasses restrictive SELECT policy)
     const { data, error } = await supabase.rpc("create_assessment", {
@@ -58,6 +60,7 @@ export async function saveAssessment(
       _recommended_skills: results.recommendedSkills as unknown as Json,
       _session_id: sessionId,
       _gender: answers.gender ?? null,
+      _country: country,
     });
 
     if (error) {
