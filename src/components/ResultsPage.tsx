@@ -103,6 +103,61 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
           </div>
         </section>
 
+        {/* Recommended level & suggested next action */}
+        <section className="animate-slide-up grid gap-4 md:grid-cols-2" style={{ animationDelay: "0.3s" }}>
+          <Card className="shadow-card">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Briefcase className="w-5 h-5 text-primary" />
+                </div>
+                <CardTitle className="text-base">Recommended Career Level</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">{recommendedLevel}</p>
+            </CardContent>
+          </Card>
+          <Card className="shadow-card">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-accent/20">
+                  <MapPin className="w-5 h-5 text-accent" />
+                </div>
+                <CardTitle className="text-base">Suggested Next Action</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">{suggestedNextAction}</p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Personalized learning roadmap */}
+        {learningRoadmap.length > 0 && (
+          <section className="animate-slide-up" style={{ animationDelay: "0.35s" }}>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Route className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold">Your Personalized Learning Roadmap</h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {learningRoadmap.map((step, i) => (
+                <Card key={i} className="shadow-card">
+                  <CardContent className="p-5">
+                    <div className="text-xs font-semibold text-primary mb-1">{step.phase}</div>
+                    <div className="font-semibold mb-2">{step.focus}</div>
+                    <p className="text-sm text-muted-foreground">{step.detail}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+        )}
+
+
+
         {/* Next Steps Section */}
         <section className="animate-slide-up" style={{ animationDelay: "0.4s" }}>
           <Card className="gradient-soft border-0 shadow-card">
