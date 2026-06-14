@@ -1,15 +1,18 @@
-import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Briefcase, MapPin, Route } from "lucide-react";
+import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Briefcase, MapPin, Route, Rocket, Plus, Check as CheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AssessmentResult } from "@/lib/careerMatcher";
 import { cn } from "@/lib/utils";
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import { RatingDialog } from "@/components/RatingDialog";
 import { EmailCaptureDialog } from "@/components/EmailCaptureDialog";
 import { getSessionId } from "@/lib/assessmentStorage";
+import { Link } from "react-router-dom";
+import { toggleSaved, isSaved, useSavedListener } from "@/lib/savedItems";
+import { getSkillBySlug } from "@/data/platform";
 
 interface ResultsPageProps {
   results: AssessmentResult;
