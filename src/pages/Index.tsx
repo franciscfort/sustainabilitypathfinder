@@ -4,6 +4,7 @@ import { ArrowRight, Compass, BookOpen, Wrench, Award, LayoutDashboard, Sparkles
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SocialProof } from "@/components/SocialProof";
+import { careerPathsV2 } from "@/data/platform";
 
 const Index = () => {
   return (
@@ -83,7 +84,8 @@ function JourneyStep({ to, icon, title, desc }: { to: string; icon: React.ReactN
   );
 }
 
-import { careerPathsV2 } from "@/data/platform";
+
+
 
 function FeaturedCard({ slug }: { slug: string }) {
   const c = careerPathsV2.find((x) => x.slug === slug);
