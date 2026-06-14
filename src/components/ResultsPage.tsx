@@ -1,4 +1,4 @@
-import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Briefcase, MapPin, Route } from "lucide-react";
+import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Briefcase, MapPin, Route, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AssessmentResult } from "@/lib/careerMatcher";
@@ -10,6 +10,7 @@ import jsPDF from "jspdf";
 import { RatingDialog } from "@/components/RatingDialog";
 import { EmailCaptureDialog } from "@/components/EmailCaptureDialog";
 import { getSessionId } from "@/lib/assessmentStorage";
+import { Link } from "react-router-dom";
 
 interface ResultsPageProps {
   results: AssessmentResult;
@@ -45,6 +46,8 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
     }
   }, []);
 
+  const topSlug = topCareers[0]?.career.id;
+
   return (
     <div ref={resultsRef} className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -56,9 +59,17 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
             Your Career Pathfinder Results
           </h1>
-          <p className="text-primary-foreground/90 text-lg max-w-xl mx-auto">
+          <p className="text-primary-foreground/90 text-lg max-w-xl mx-auto mb-6">
             Based on your personality, interests, and skills, here are your best-fit sustainability career paths.
           </p>
+          {topSlug && (
+            <Link to={`/careers/${topSlug}`}>
+              <Button size="xl" variant="secondary" className="shadow-lg">
+                <Rocket className="w-5 h-5 mr-2" />
+                View My Career Roadmap
+              </Button>
+            </Link>
+          )}
         </div>
       </header>
 
@@ -74,9 +85,9 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
 
           <div className="grid gap-6">
             {topCareers.map((match, index) => (
-              <CareerCard 
-                key={match.career.id} 
-                match={match} 
+              <CareerCard
+                key={match.career.id}
+                match={match}
                 rank={index + 1}
               />
             ))}
