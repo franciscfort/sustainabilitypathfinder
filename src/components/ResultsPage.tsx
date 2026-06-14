@@ -1,4 +1,4 @@
-import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen } from "lucide-react";
+import { ArrowRight, RefreshCw, Target, Lightbulb, TrendingUp, BookOpen, Briefcase, MapPin, Route } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AssessmentResult } from "@/lib/careerMatcher";
@@ -19,8 +19,9 @@ interface ResultsPageProps {
 }
 
 export function ResultsPage({ results, onRestart, shareId, assessmentId }: ResultsPageProps) {
-  const { topCareers, recommendedSkills } = results;
+  const { topCareers, recommendedSkills, recommendedLevel, suggestedNextAction, learningRoadmap } = results;
   const resultsRef = useRef<HTMLDivElement>(null);
+
 
   const handleDownloadPdf = useCallback(async () => {
     if (!resultsRef.current) return;

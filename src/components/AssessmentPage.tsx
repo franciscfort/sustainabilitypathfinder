@@ -4,7 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Card } from "@/components/ui/card";
 import { personalityLabels, passionLabels, skillLabels } from "@/data/careerPaths";
-import { AssessmentAnswers, Gender } from "@/lib/careerMatcher";
+import {
+  AssessmentAnswers,
+  Gender,
+  CareerStage,
+  ExperienceLevel,
+  CurrentGoal,
+  careerStageLabels,
+  experienceLevelLabels,
+  currentGoalLabels,
+} from "@/lib/careerMatcher";
 import { cn } from "@/lib/utils";
 
 interface AssessmentPageProps {
@@ -12,29 +21,23 @@ interface AssessmentPageProps {
   onBack: () => void;
 }
 
-type Section = "gender" | "personality" | "passions" | "skills";
+type Section =
+  | "gender"
+  | "careerStage"
+  | "experienceLevel"
+  | "currentGoal"
+  | "personality"
+  | "passions"
+  | "skills";
 
 const sections: { id: Section; title: string; subtitle: string }[] = [
-  {
-    id: "gender",
-    title: "About You",
-    subtitle: "How do you identify? This helps us tailor your experience.",
-  },
-  {
-    id: "personality",
-    title: "Work Style & Personality",
-    subtitle: "Rate how much each statement describes you",
-  },
-  {
-    id: "passions",
-    title: "Sustainability Interests",
-    subtitle: "Select all areas that excite you",
-  },
-  {
-    id: "skills",
-    title: "Current Skills",
-    subtitle: "Select skills you already have",
-  },
+  { id: "gender", title: "About You", subtitle: "How do you identify? This helps us tailor your experience." },
+  { id: "careerStage", title: "Your Career Stage", subtitle: "Which stage best describes where you are in your sustainability journey?" },
+  { id: "experienceLevel", title: "Experience Level", subtitle: "How would you rate your current sustainability knowledge and experience?" },
+  { id: "currentGoal", title: "Your Current Goal", subtitle: "What is your primary goal right now?" },
+  { id: "personality", title: "Work Style & Personality", subtitle: "Rate how much each statement describes you" },
+  { id: "passions", title: "Sustainability Interests", subtitle: "Select all areas that excite you" },
+  { id: "skills", title: "Current Skills", subtitle: "Select skills you already have" },
 ];
 
 const genderOptions: { value: Gender; label: string }[] = [
@@ -47,6 +50,9 @@ const genderOptions: { value: Gender; label: string }[] = [
 export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
   const [currentSection, setCurrentSection] = useState(0);
   const [gender, setGender] = useState<Gender | undefined>(undefined);
+  const [careerStage, setCareerStage] = useState<CareerStage | undefined>(undefined);
+  const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel | undefined>(undefined);
+  const [currentGoal, setCurrentGoal] = useState<CurrentGoal | undefined>(undefined);
   const [personality, setPersonality] = useState<Record<string, number>>({});
   const [passions, setPassions] = useState<string[]>([]);
   const [skills, setSkills] = useState<string[]>([]);
@@ -58,7 +64,15 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
     if (currentSection < sections.length - 1) {
       setCurrentSection((prev) => prev + 1);
     } else {
-      onComplete({ gender, personality, passions, skills });
+      onComplete({
+        gender,
+        careerStage,
+        experienceLevel,
+        currentGoal,
+        personality,
+        passions,
+        skills,
+      });
     }
   };
 
@@ -74,6 +88,12 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
     switch (section.id) {
       case "gender":
         return !!gender;
+      case "careerStage":
+        return !!careerStage;
+      case "experienceLevel":
+        return !!experienceLevel;
+      case "currentGoal":
+        return !!currentGoal;
       case "personality":
         return Object.keys(personality).length >= 3;
       case "passions":
@@ -87,7 +107,6 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Header */}
       <header className="border-b bg-card/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
@@ -103,7 +122,6 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
         </div>
       </header>
 
-      {/* Content */}
       <main className="flex-1 py-8 px-4">
         <div className="max-w-2xl mx-auto animate-fade-in" key={section.id}>
           <div className="text-center mb-8">
@@ -112,35 +130,55 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
           </div>
 
           {section.id === "gender" && (
-            <GenderSection value={gender} onChange={setGender} />
+            <SingleSelectSection
+              options={genderOptions.map((o) => ({ value: o.value, label: o.label }))}
+              value={gender}
+              onChange={(v) => setGender(v as Gender)}
+              ariaLabel="Gender"
+            />
+          )}
+
+          {section.id === "careerStage" && (
+            <SingleSelectSection
+              options={Object.entries(careerStageLabels).map(([value, label]) => ({ value, label }))}
+              value={careerStage}
+              onChange={(v) => setCareerStage(v as CareerStage)}
+              ariaLabel="Career stage"
+            />
+          )}
+
+          {section.id === "experienceLevel" && (
+            <SingleSelectSection
+              options={Object.entries(experienceLevelLabels).map(([value, label]) => ({ value, label }))}
+              value={experienceLevel}
+              onChange={(v) => setExperienceLevel(v as ExperienceLevel)}
+              ariaLabel="Experience level"
+            />
+          )}
+
+          {section.id === "currentGoal" && (
+            <SingleSelectSection
+              options={Object.entries(currentGoalLabels).map(([value, label]) => ({ value, label }))}
+              value={currentGoal}
+              onChange={(v) => setCurrentGoal(v as CurrentGoal)}
+              ariaLabel="Current goal"
+            />
           )}
 
           {section.id === "personality" && (
-            <PersonalitySection 
-              values={personality} 
-              onChange={setPersonality} 
-            />
+            <PersonalitySection values={personality} onChange={setPersonality} />
           )}
 
           {section.id === "passions" && (
-            <MultiSelectSection
-              options={passionLabels}
-              selected={passions}
-              onChange={setPassions}
-            />
+            <MultiSelectSection options={passionLabels} selected={passions} onChange={setPassions} />
           )}
 
           {section.id === "skills" && (
-            <MultiSelectSection
-              options={skillLabels}
-              selected={skills}
-              onChange={setSkills}
-            />
+            <MultiSelectSection options={skillLabels} selected={skills} onChange={setSkills} />
           )}
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="border-t bg-card/80 backdrop-blur-sm sticky bottom-0">
         <div className="max-w-3xl mx-auto px-4 py-4">
           <Button
@@ -168,16 +206,20 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
   );
 }
 
-function GenderSection({
+function SingleSelectSection({
+  options,
   value,
   onChange,
+  ariaLabel,
 }: {
-  value: Gender | undefined;
-  onChange: (value: Gender) => void;
+  options: { value: string; label: string }[];
+  value: string | undefined;
+  onChange: (value: string) => void;
+  ariaLabel: string;
 }) {
   return (
-    <div className="grid gap-3" role="radiogroup" aria-label="Gender">
-      {genderOptions.map((opt) => {
+    <div className="grid gap-3" role="radiogroup" aria-label={ariaLabel}>
+      {options.map((opt) => {
         const isSelected = value === opt.value;
         return (
           <button
@@ -217,7 +259,6 @@ function PersonalitySection({
   onChange: (values: Record<string, number>) => void;
 }) {
   const traits = Object.entries(personalityLabels);
-
   const handleChange = (trait: string, value: number) => {
     onChange({ ...values, [trait]: value });
   };
@@ -288,16 +329,12 @@ function MultiSelectSection({
             <div
               className={cn(
                 "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-all",
-                isSelected
-                  ? "bg-primary border-primary"
-                  : "border-muted-foreground/30"
+                isSelected ? "bg-primary border-primary" : "border-muted-foreground/30"
               )}
             >
               {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
             </div>
-            <span className={cn("font-medium", isSelected && "text-primary")}>
-              {label}
-            </span>
+            <span className={cn("font-medium", isSelected && "text-primary")}>{label}</span>
           </button>
         );
       })}
