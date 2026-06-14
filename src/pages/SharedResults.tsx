@@ -26,10 +26,14 @@ const SharedResults = () => {
         setResults({
           topCareers: assessment.career_matches,
           recommendedSkills: assessment.recommended_skills,
+          recommendedLevel: "Associate / Specialist roles",
+          suggestedNextAction: `Take one concrete step toward ${assessment.career_matches[0]?.career.title ?? "your path"} this week.`,
+          learningRoadmap: [],
         });
       } else {
         setError(true);
       }
+
       setLoading(false);
     }
     load();

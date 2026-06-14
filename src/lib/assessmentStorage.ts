@@ -61,7 +61,11 @@ export async function saveAssessment(
       _session_id: sessionId,
       _gender: answers.gender ?? null,
       _country: country,
+      _career_stage: answers.careerStage ?? null,
+      _experience_level: answers.experienceLevel ?? null,
+      _current_goal: answers.currentGoal ?? null,
     });
+
 
     if (error) {
       if (error.message?.includes("Rate limit")) {

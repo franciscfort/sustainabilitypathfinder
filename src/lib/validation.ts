@@ -20,6 +20,35 @@ const VALID_SKILL_KEYS = Object.keys(skillLabels);
  */
 export const assessmentAnswersSchema = z.object({
   gender: z.enum(["female", "male", "non-binary", "prefer-not-to-say"]).optional(),
+  careerStage: z
+    .enum([
+      "student",
+      "recent-graduate",
+      "early-career",
+      "mid-career",
+      "senior",
+      "career-switcher",
+      "entrepreneur",
+      "ngo-development",
+    ])
+    .optional(),
+  experienceLevel: z
+    .enum(["beginner", "basic-awareness", "intermediate", "advanced", "expert"])
+    .optional(),
+  currentGoal: z
+    .enum([
+      "break-in",
+      "identify-path",
+      "develop-skills",
+      "transition",
+      "advance",
+      "consultant",
+      "build-business",
+      "find-jobs",
+      "strengthen-esg",
+      "carbon-climate-finance",
+    ])
+    .optional(),
   personality: z
     .record(
       z.enum(VALID_PERSONALITY_KEYS as [string, ...string[]]),
@@ -40,6 +69,7 @@ export const assessmentAnswersSchema = z.object({
     .min(1, "Select at least one skill")
     .max(VALID_SKILL_KEYS.length, "Too many skills"),
 });
+
 
 /**
  * Email validation schema (reusable).

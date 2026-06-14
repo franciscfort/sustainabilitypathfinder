@@ -41,9 +41,12 @@ export type Database = {
       assessments: {
         Row: {
           career_matches: Json
+          career_stage: string | null
           country: string | null
           created_at: string
+          current_goal: string | null
           current_skills: string[]
+          experience_level: string | null
           gender: string | null
           id: string
           passion_areas: string[]
@@ -55,9 +58,12 @@ export type Database = {
         }
         Insert: {
           career_matches: Json
+          career_stage?: string | null
           country?: string | null
           created_at?: string
+          current_goal?: string | null
           current_skills: string[]
+          experience_level?: string | null
           gender?: string | null
           id?: string
           passion_areas: string[]
@@ -69,9 +75,12 @@ export type Database = {
         }
         Update: {
           career_matches?: Json
+          career_stage?: string | null
           country?: string | null
           created_at?: string
+          current_goal?: string | null
           current_skills?: string[]
+          experience_level?: string | null
           gender?: string | null
           id?: string
           passion_areas?: string[]
@@ -175,13 +184,35 @@ export type Database = {
               share_id: string
             }[]
           }
+        | {
+            Args: {
+              _career_matches: Json
+              _career_stage?: string
+              _country?: string
+              _current_goal?: string
+              _current_skills: string[]
+              _experience_level?: string
+              _gender?: string
+              _passion_areas: string[]
+              _personality_answers: Json
+              _recommended_skills: Json
+              _session_id: string
+            }
+            Returns: {
+              id: string
+              share_id: string
+            }[]
+          }
       get_assessment_by_share_id: {
         Args: { _share_id: string }
         Returns: {
           career_matches: Json
+          career_stage: string | null
           country: string | null
           created_at: string
+          current_goal: string | null
           current_skills: string[]
+          experience_level: string | null
           gender: string | null
           id: string
           passion_areas: string[]
@@ -217,9 +248,12 @@ export type Database = {
         Args: { _limit?: number; _session_id: string }
         Returns: {
           career_matches: Json
+          career_stage: string | null
           country: string | null
           created_at: string
+          current_goal: string | null
           current_skills: string[]
+          experience_level: string | null
           gender: string | null
           id: string
           passion_areas: string[]
