@@ -1,6 +1,6 @@
 import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Leaf, Menu, X } from "lucide-react";
+import { Leaf, Menu, X, Instagram } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const nav = [
