@@ -19,7 +19,7 @@ const Index = () => {
       <section className="px-4 py-20 md:py-28">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary mb-4 px-3 py-1 rounded-full bg-primary/10">
-            <Sparkles className="w-3.5 h-3.5" /> Pathfinder 2.0
+            <Sparkles className="w-3.5 h-3.5" /> Sustainability Pathfinder 2.0
           </div>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-balance">
             Build a career that<br /><span className="text-primary">heals the planet.</span>

@@ -11,7 +11,7 @@ export default function About() {
         <meta name="description" content="A free, global platform helping people discover and build careers in sustainability." />
       </Helmet>
       <section className="max-w-3xl mx-auto px-4 py-16">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">About Pathfinder</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">About Sustainability Pathfinder</h1>
         <p className="text-lg text-muted-foreground mb-8">
           The Sustainability Career Pathfinder is a free, global platform that helps people
           discover, learn, and build careers in the sustainability sector.

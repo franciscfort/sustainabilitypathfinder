@@ -1,4 +1,4 @@
-// Platform content for Pathfinder 2.0 — career paths, skills, certifications, resources.
+// Platform content for Sustainability Pathfinder 2.0 — career paths, skills, certifications, resources.
 // IDs/slugs for careers match existing careerPaths IDs so assessment results deep-link cleanly.
 
 export type Difficulty = "beginner" | "intermediate" | "advanced";

@@ -20,7 +20,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
           {/* Title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-balance">
             Sustainability Career
-            <span className="block text-primary">Pathfinder</span>
+            <span className="block text-primary">Sustainability Pathfinder</span>
           </h1>
 
           {/* Description */}

@@ -24,7 +24,7 @@ export default function Dashboard() {
   return (
     <>
       <Helmet>
-        <title>Your Dashboard — Pathfinder</title>
+        <title>Your Dashboard — Sustainability Pathfinder</title>
         <meta name="description" content="Your saved sustainability career paths, skills, certifications, and resources." />
       </Helmet>
       <section className="max-w-6xl mx-auto px-4 py-12 space-y-10">
