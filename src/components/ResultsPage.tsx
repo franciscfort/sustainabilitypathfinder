@@ -57,7 +57,7 @@ export function ResultsPage({ results, onRestart, shareId, assessmentId }: Resul
             <Target className="w-8 h-8" />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Your Career Pathfinder Results
+            Your Sustainability Pathfinder Results
           </h1>
           <p className="text-primary-foreground/90 text-lg max-w-xl mx-auto mb-6">
             Based on your personality, interests, and skills, here are your best-fit sustainability career paths.

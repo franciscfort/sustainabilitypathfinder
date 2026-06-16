@@ -28,7 +28,7 @@ export function AppShell() {
             <div className="w-9 h-9 rounded-lg gradient-hero flex items-center justify-center">
               <Leaf className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="hidden sm:inline">Pathfinder</span>
+            <span className="hidden sm:inline">Sustainability Pathfinder</span>
           </Link>
           <nav className="hidden lg:flex items-center gap-1">
             {nav.map((n) => (
@@ -89,7 +89,7 @@ export function AppShell() {
           <div>
             <div className="flex items-center gap-2 font-bold mb-2">
               <Leaf className="w-5 h-5 text-primary" />
-              Pathfinder
+              Sustainability Pathfinder
             </div>
             <p className="text-muted-foreground">
               Helping people discover, learn and grow into the world's most impactful careers.

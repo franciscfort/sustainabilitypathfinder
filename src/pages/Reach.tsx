@@ -36,7 +36,7 @@ const Reach = () => {
   return (
     <>
       <Helmet>
-        <title>Pathfinder Reach — Countries Reached</title>
+        <title>Sustainability Pathfinder Reach — Countries Reached</title>
         <meta name="robots" content="noindex,nofollow" />
       </Helmet>
       <div className="min-h-screen bg-background py-12 px-4">
@@ -45,7 +45,7 @@ const Reach = () => {
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-4">
               <Globe2 className="w-7 h-7 text-primary" />
             </div>
-            <h1 className="text-3xl font-bold mb-2">Pathfinder Reach</h1>
+            <h1 className="text-3xl font-bold mb-2">Sustainability Pathfinder Reach</h1>
             <p className="text-muted-foreground">Countries the Sustainability Career Pathfinder has reached.</p>
           </header>
 

@@ -22,7 +22,7 @@ export default function Careers() {
   return (
     <>
       <Helmet>
-        <title>Explore Sustainability Career Paths — Pathfinder</title>
+        <title>Explore Sustainability Career Paths — Sustainability Pathfinder</title>
         <meta name="description" content="Browse 12 sustainability career pathways with full roadmaps, skills, certifications and portfolio projects." />
       </Helmet>
       <section className="max-w-7xl mx-auto px-4 py-12">

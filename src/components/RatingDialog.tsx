@@ -79,7 +79,7 @@ export function RatingDialog() {
         <DialogHeader>
           <DialogTitle className="text-xl">Rate Your Experience</DialogTitle>
           <DialogDescription>
-            How would you rate the Career Pathfinder? Your feedback helps us improve!
+            How would you rate the Sustainability Pathfinder? Your feedback helps us improve!
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-6 pt-2">
