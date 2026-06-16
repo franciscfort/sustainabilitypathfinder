@@ -15,7 +15,7 @@ const displayNames = typeof Intl !== "undefined" && "DisplayNames" in Intl
   : null;
 
 export function codeToName(code: string): string {
-  if (code === "UNKNOWN") return "Unknown";
+  if (code === "UNKNOWN") return "Worldwide";
   try {
     return displayNames?.of(code) ?? code;
   } catch {
