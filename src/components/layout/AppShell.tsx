@@ -1,6 +1,6 @@
 import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Leaf, Menu, X } from "lucide-react";
+import { Leaf, Menu, X, Instagram } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -94,6 +94,16 @@ export function AppShell() {
             <p className="text-muted-foreground">
               Helping people discover, learn and grow into the world's most impactful careers.
             </p>
+            <a
+              href="https://www.instagram.com/sustainabilitycareerpathfinder/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-3 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+              <span>@sustainabilitycareerpathfinder</span>
+            </a>
           </div>
           <FooterCol title="Discover" links={[
             { to: "/assessment", label: "Take the Assessment" },
