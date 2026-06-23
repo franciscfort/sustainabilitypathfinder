@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ratingSchema, checkClientRateLimit, sanitizeText } from "@/lib/validation";
 import { getSessionId } from "@/lib/assessmentStorage";
+import { detectCountry } from "@/lib/geo";
 
 export function RatingDialog() {
   const [open, setOpen] = useState(false);
@@ -42,10 +43,12 @@ export function RatingDialog() {
     }
 
     setIsSubmitting(true);
+    const country = await detectCountry();
     const { error } = await supabase.from("app_ratings").insert({
       rating: parsed.data.rating,
       comment: parsed.data.comment ? sanitizeText(parsed.data.comment) : null,
       session_id: getSessionId(),
+      country,
     });
     setIsSubmitting(false);
 
