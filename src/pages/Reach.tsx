@@ -14,6 +14,7 @@ const Reach = () => {
   const [stats, setStats] = useState<CountryStat[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [totalAssessments, setTotalAssessments] = useState<number | null>(null);
 
   useEffect(() => {
     (async () => {
