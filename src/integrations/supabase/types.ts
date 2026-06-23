@@ -17,6 +17,7 @@ export type Database = {
       app_ratings: {
         Row: {
           comment: string | null
+          country: string | null
           created_at: string
           id: string
           rating: number
@@ -24,6 +25,7 @@ export type Database = {
         }
         Insert: {
           comment?: string | null
+          country?: string | null
           created_at?: string
           id?: string
           rating: number
@@ -31,6 +33,7 @@ export type Database = {
         }
         Update: {
           comment?: string | null
+          country?: string | null
           created_at?: string
           id?: string
           rating?: number
@@ -95,6 +98,7 @@ export type Database = {
       email_captures: {
         Row: {
           assessment_id: string | null
+          country: string | null
           created_at: string
           email: string
           id: string
@@ -102,6 +106,7 @@ export type Database = {
         }
         Insert: {
           assessment_id?: string | null
+          country?: string | null
           created_at?: string
           email: string
           id?: string
@@ -109,6 +114,7 @@ export type Database = {
         }
         Update: {
           assessment_id?: string | null
+          country?: string | null
           created_at?: string
           email?: string
           id?: string
