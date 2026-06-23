@@ -14,16 +14,21 @@ const Reach = () => {
   const [stats, setStats] = useState<CountryStat[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [totalAssessments, setTotalAssessments] = useState<number | null>(null);
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await supabase.rpc("get_country_stats");
-      if (error) {
-        setError(error.message);
+      const [{ data, error }, { data: assessmentCount, error: assessmentError }] = await Promise.all([
+        supabase.rpc("get_country_stats"),
+        supabase.rpc("get_total_assessments"),
+      ]);
+      if (error || assessmentError) {
+        setError((error?.message || assessmentError?.message) ?? "Failed to load reach data");
       } else {
         setStats(
           (data ?? []).map((r: any) => ({ country: r.country, count: Number(r.count) }))
         );
+        setTotalAssessments(assessmentCount ? Number(assessmentCount) : null);
       }
       setLoading(false);
     })();
@@ -57,13 +62,21 @@ const Reach = () => {
             <p className="text-center text-destructive">{error}</p>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-muted-foreground font-medium">Total interactions</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold">{totalInteractions}</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm text-muted-foreground font-medium">Total assessments</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-3xl font-bold">{totalAssessments ?? 0}</p>
                   </CardContent>
                 </Card>
                 <Card>

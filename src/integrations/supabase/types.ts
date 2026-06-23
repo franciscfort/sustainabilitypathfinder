@@ -276,6 +276,7 @@ export type Database = {
           isSetofReturn: true
         }
       }
+      get_total_assessments: { Args: never; Returns: number }
     }
     Enums: {
       [_ in never]: never
