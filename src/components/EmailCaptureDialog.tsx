@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { emailSchema, checkClientRateLimit } from "@/lib/validation";
+import { detectCountry } from "@/lib/geo";
 
 interface EmailCaptureDialogProps {
   onEmailSubmitted: () => void;
@@ -39,12 +40,14 @@ export function EmailCaptureDialog({ onEmailSubmitted, assessmentId, sessionId }
 
     setSubmitting(true);
     try {
+      const country = await detectCountry();
       const { error: dbError } = await supabase
         .from("email_captures")
         .insert({
           email: result.data,
           assessment_id: assessmentId ?? null,
           session_id: sessionId ?? null,
+          country,
         });
 
       if (dbError) {

@@ -30,7 +30,7 @@ const Reach = () => {
   }, []);
 
   const known = stats.filter((s) => s.country !== "UNKNOWN");
-  const totalAssessments = stats.reduce((sum, s) => sum + s.count, 0);
+  const totalInteractions = stats.reduce((sum, s) => sum + s.count, 0);
   const uniqueCountries = known.length;
 
   return (
@@ -60,10 +60,10 @@ const Reach = () => {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm text-muted-foreground font-medium">Total assessments</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground font-medium">Total interactions</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-3xl font-bold">{totalAssessments}</p>
+                    <p className="text-3xl font-bold">{totalInteractions}</p>
                   </CardContent>
                 </Card>
                 <Card>
@@ -82,7 +82,7 @@ const Reach = () => {
                 </CardHeader>
                 <CardContent>
                   {stats.length === 0 ? (
-                    <p className="text-muted-foreground text-sm">No assessments yet.</p>
+                    <p className="text-muted-foreground text-sm">No interactions yet.</p>
                   ) : (
                     <ul className="divide-y divide-border">
                       {stats.map((s) => (
