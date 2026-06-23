@@ -62,13 +62,21 @@ const Reach = () => {
             <p className="text-center text-destructive">{error}</p>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm text-muted-foreground font-medium">Total interactions</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold">{totalInteractions}</p>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-sm text-muted-foreground font-medium">Total assessments</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-3xl font-bold">{totalAssessments ?? 0}</p>
                   </CardContent>
                 </Card>
                 <Card>
