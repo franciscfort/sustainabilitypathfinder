@@ -18,13 +18,17 @@ const Reach = () => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await supabase.rpc("get_country_stats");
-      if (error) {
-        setError(error.message);
+      const [{ data, error }, { data: assessmentCount, error: assessmentError }] = await Promise.all([
+        supabase.rpc("get_country_stats"),
+        supabase.rpc("get_total_assessments"),
+      ]);
+      if (error || assessmentError) {
+        setError((error?.message || assessmentError?.message) ?? "Failed to load reach data");
       } else {
         setStats(
           (data ?? []).map((r: any) => ({ country: r.country, count: Number(r.count) }))
         );
+        setTotalAssessments(assessmentCount ? Number(assessmentCount) : null);
       }
       setLoading(false);
     })();
