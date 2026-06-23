@@ -60,7 +60,7 @@ const Reach = () => {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm text-muted-foreground font-medium">Total assessments</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground font-medium">Total interactions</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold">{totalAssessments}</p>
