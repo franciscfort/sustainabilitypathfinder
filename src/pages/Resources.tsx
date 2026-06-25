@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent } from "@/components/ui/card";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink } from "lucide-react";
 import { resources, careerPathsV2, Resource } from "@/data/platform";
 import { isSaved, toggleSaved, useSavedListener } from "@/lib/savedItems";
 import { cn } from "@/lib/utils";
