@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Card, CardContent } from "@/components/ui/card";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink } from "lucide-react";
 import { resources, careerPathsV2, Resource } from "@/data/platform";
 import { isSaved, toggleSaved, useSavedListener } from "@/lib/savedItems";
 import { cn } from "@/lib/utils";
@@ -55,15 +55,26 @@ export default function Resources() {
                 <CardContent className="p-5 flex flex-col h-full">
                   <div className="flex justify-between items-start gap-2 mb-2">
                     <span className="text-[10px] uppercase font-semibold px-2 py-0.5 rounded bg-accent/15 text-accent">{r.type}</span>
-                    <button onClick={() => { const n = toggleSaved("resources", r.id); toast.success(n ? "Bookmarked" : "Removed"); }} className="text-muted-foreground hover:text-primary">
+                    <button onClick={() => { const n = toggleSaved("resources", r.id); toast.success(n ? "Bookmarked" : "Removed"); }} className="text-muted-foreground hover:text-primary" aria-label={saved ? "Remove bookmark" : "Bookmark resource"}>
                       {saved ? <BookmarkCheck className="w-4 h-4 text-primary" /> : <Bookmark className="w-4 h-4" />}
                     </button>
                   </div>
                   <h2 className="font-semibold mb-1">{r.title}</h2>
                   <div className="text-xs text-muted-foreground mb-2">{r.provider}{r.cost ? ` · ${r.cost}` : ""}</div>
                   <p className="text-sm text-muted-foreground flex-1">{r.description}</p>
+                  {r.url && (
+                    <a
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                    >
+                      Open resource <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </CardContent>
               </Card>
+
             );
           })}
         </div>
