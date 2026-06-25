@@ -213,27 +213,14 @@ export type Database = {
         Args: { _share_id: string }
         Returns: {
           career_matches: Json
-          career_stage: string | null
-          country: string | null
           created_at: string
-          current_goal: string | null
           current_skills: string[]
-          experience_level: string | null
-          gender: string | null
           id: string
           passion_areas: string[]
           personality_answers: Json
           recommended_skills: Json
-          session_id: string | null
-          share_id: string | null
-          user_id: string | null
+          share_id: string
         }[]
-        SetofOptions: {
-          from: "*"
-          to: "assessments"
-          isOneToOne: false
-          isSetofReturn: true
-        }
       }
       get_country_stats: {
         Args: never
