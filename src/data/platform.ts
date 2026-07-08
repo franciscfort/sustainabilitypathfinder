@@ -204,6 +204,8 @@ export const resources: Resource[] = [
   { id: "r65", title: "Echoing Green Climate Fellowship", type: "fellowship", provider: "Echoing Green", description: "Seed funding and support for early-stage climate social entrepreneurs.", careerPaths: ["community-sustainability", "climate-policy"], cost: "free", url: "https://echoinggreen.org/fellowship/" },
   { id: "r66", title: "ClimateScience Olympiad & Fellowship", type: "fellowship", provider: "ClimateScience", description: "Global learning and project fellowship for young climate leaders.", careerPaths: ["climate-education", "climate-communications"], cost: "free", url: "https://climatescience.org/" },
   { id: "r67", title: "WWF EFN Fellowship", type: "fellowship", provider: "WWF Education for Nature", description: "Funding for conservation leaders pursuing graduate study.", careerPaths: ["biodiversity-conservation"], cost: "free", url: "https://www.worldwildlife.org/projects/russell-e-train-fellowships" },
+  { id: "r68", title: "Careers in Sustainability: Your Step-by-Step Guide", type: "book", provider: "Francisc Fort", description: "No-fluff ebook for beginners who want real careers in sustainability without a fancy degree or years of experience.", careerPaths: ["climate-policy", "esg-reporting", "carbon-markets", "renewable-energy", "biodiversity-conservation", "environmental-consulting"], cost: "paid", url: "https://nestuge.com/kl8oyapok" },
+  { id: "r69", title: "Africa Carbon Market Career Roadmap", type: "guide", provider: "Francisc Fort", description: "Focused roadmap to building a career in Africa's growing carbon markets.", careerPaths: ["carbon-markets", "climate-policy", "community-sustainability"], cost: "paid", url: "https://nestuge.com/lki3emsce" },
 ];
 
 
