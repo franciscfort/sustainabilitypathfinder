@@ -102,23 +102,27 @@ export interface AssessmentResult {
 
 // --- Goal / stage affinities used to boost relevant careers ---
 const goalCareerAffinity: Record<CurrentGoal, string[]> = {
-  "break-in": [],
+  "break-in": ["education-capacity-building", "programs-project-management", "partnerships-stakeholder-engagement"],
   "identify-path": [],
-  "develop-skills": [],
-  transition: [],
-  advance: [],
-  consultant: ["environmental-consulting", "esg-reporting", "climate-policy"],
-  "build-business": ["circular-economy", "renewable-energy", "sustainable-fashion", "sustainability-data"],
-  "find-jobs": [],
-  "strengthen-esg": ["esg-reporting", "sustainable-supply-chain", "environmental-consulting"],
-  "carbon-climate-finance": ["carbon-markets", "esg-reporting"],
+  "develop-skills": ["education-capacity-building", "research-knowledge-management"],
+  transition: ["programs-project-management", "partnerships-stakeholder-engagement", "education-capacity-building"],
+  advance: ["programs-project-management", "partnerships-stakeholder-engagement"],
+  consultant: ["environmental-consulting", "esg-reporting", "climate-policy", "research-knowledge-management"],
+  "build-business": ["circular-economy", "renewable-energy", "sustainable-fashion", "sustainability-data", "grant-writing-mobilization"],
+  "find-jobs": ["programs-project-management", "grant-writing-mobilization", "partnerships-stakeholder-engagement"],
+  "strengthen-esg": ["esg-reporting", "sustainable-supply-chain", "environmental-consulting", "programs-project-management"],
+  "carbon-climate-finance": ["carbon-markets", "esg-reporting", "grant-writing-mobilization"],
 };
 
 const stageCareerAffinity: Partial<Record<CareerStage, string[]>> = {
-  entrepreneur: ["circular-economy", "renewable-energy", "sustainable-fashion", "sustainability-data"],
-  "ngo-development": ["community-sustainability", "climate-policy", "biodiversity-conservation", "climate-communications"],
-  senior: ["environmental-consulting", "esg-reporting", "climate-policy"],
-  "mid-career": ["esg-reporting", "environmental-consulting", "carbon-markets"],
+  entrepreneur: ["circular-economy", "renewable-energy", "sustainable-fashion", "sustainability-data", "partnerships-stakeholder-engagement"],
+  "ngo-development": ["community-sustainability", "climate-policy", "biodiversity-conservation", "climate-communications", "grant-writing-mobilization", "programs-project-management", "partnerships-stakeholder-engagement", "education-capacity-building", "research-knowledge-management"],
+  senior: ["environmental-consulting", "esg-reporting", "climate-policy", "programs-project-management", "partnerships-stakeholder-engagement"],
+  "mid-career": ["esg-reporting", "environmental-consulting", "carbon-markets", "programs-project-management", "research-knowledge-management"],
+  student: ["education-capacity-building", "research-knowledge-management"],
+  "recent-graduate": ["education-capacity-building", "programs-project-management", "research-knowledge-management"],
+  "early-career": ["programs-project-management", "partnerships-stakeholder-engagement", "grant-writing-mobilization"],
+  "career-switcher": ["programs-project-management", "partnerships-stakeholder-engagement", "education-capacity-building"],
 };
 
 const experienceLevelScore: Record<ExperienceLevel, number> = {

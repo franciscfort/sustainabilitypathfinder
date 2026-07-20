@@ -656,6 +656,171 @@ export const careerPathsV2: CareerPathV2[] = [
     },
     ["biodiversity-conservation", "climate-policy", "circular-economy"]
   ),
+  buildCareer(
+    "education-capacity-building",
+    "Sustainability Education & Capacity Building",
+    "🎓",
+    "Grow the talent and awareness the climate transition needs.",
+    "Sustainability educators design curricula, workshops, and training programs that build climate and sustainability literacy across schools, universities, corporates, NGOs and communities.",
+    "The green skills gap is one of the biggest blockers to the transition — education and capacity building are in massive demand across every sector.",
+    "very-high",
+    "Roles across schools, universities, NGOs, foundations, corporates, UN agencies and training providers.",
+    {
+      entry: ["Sustainability Educator", "Environmental Education Officer", "Learning & Development Coordinator", "Youth Engagement Officer"],
+      mid: ["Climate Education Specialist", "Curriculum Manager", "Training Program Manager", "Capacity Building Lead"],
+      senior: ["Director of Education & Learning", "Head of Capacity Building", "Chief Learning Officer"],
+    },
+    {
+      beginner: { soft: ["Empathy", "Storytelling", "Active listening"], technical: ["Workshop facilitation basics", "PowerPoint / Canva", "Curriculum literacy"] },
+      intermediate: { soft: ["Public speaking", "Group facilitation"], technical: ["Instructional design (ADDIE)", "LMS platforms (Moodle, Teachable)", "Assessment design"] },
+      advanced: { soft: ["Executive facilitation", "Coaching"], technical: ["Program evaluation", "Blended learning strategy", "Train-the-trainer design"] },
+    },
+    ["Canva", "PowerPoint", "Notion", "Moodle", "Miro", "Zoom", "Kahoot", "Google Classroom"],
+    { beginner: ["carbon-literacy"], intermediate: [], advanced: ["chmm"] },
+    [
+      { title: "Design a 4-week climate course", description: "Build a full outline, slides, and activities for a beginner climate course." },
+      { title: "Run a workshop", description: "Deliver a 90-minute sustainability workshop and gather feedback." },
+      { title: "Youth engagement toolkit", description: "Produce a downloadable toolkit for youth-led climate action." },
+    ],
+    {
+      days1to30: ["Complete Carbon Literacy training", "Read 'Teaching Climate Change' resources", "Shadow or co-facilitate one workshop"],
+      days31to60: ["Take an instructional design intro course", "Design a 4-week course outline", "Facilitate a small workshop"],
+      days61to90: ["Publish a public workshop or webinar", "Apply to education officer and L&D roles"],
+    },
+    ["climate-communications", "partnerships-stakeholder-engagement", "programs-project-management"]
+  ),
+  buildCareer(
+    "programs-project-management",
+    "Sustainability Programs & Project Management",
+    "🗂️",
+    "Turn sustainability strategy into on-the-ground delivery.",
+    "Program and project managers plan, coordinate, and deliver sustainability initiatives — ESG programs, climate projects, and development interventions — on time, on budget, and with measurable outcomes.",
+    "As sustainability moves from strategy to execution, every organization needs people who can run the programs that deliver impact.",
+    "very-high",
+    "Highly transferable — strong demand across corporates, NGOs, foundations, government and UN agencies.",
+    {
+      entry: ["Program Assistant", "Sustainability Project Coordinator", "ESG Program Officer"],
+      mid: ["Program Manager", "Sustainability Project Manager", "Climate Program Lead"],
+      senior: ["Director of Programs", "Head of Sustainability Delivery", "Chief of Party"],
+    },
+    {
+      beginner: { soft: ["Organization", "Written communication"], technical: ["Excel / Google Sheets", "Basic budgeting", "Workplan design"] },
+      intermediate: { soft: ["Stakeholder management", "Facilitation"], technical: ["Logframe / Theory of Change", "M&E basics", "Project management (Asana, ClickUp)"] },
+      advanced: { soft: ["Adaptive leadership", "Risk management"], technical: ["Portfolio management", "Donor reporting", "PMD Pro / PMP"] },
+    },
+    ["Asana", "ClickUp", "MS Project", "Notion", "Excel", "Power BI", "KoboToolbox"],
+    { beginner: ["carbon-literacy"], intermediate: ["chmm"], advanced: ["issp-csp"] },
+    [
+      { title: "Build a project workplan", description: "Design a full workplan, budget and logframe for a mock climate project." },
+      { title: "M&E framework", description: "Create indicators and a monitoring plan for a sustainability program." },
+      { title: "Donor report", description: "Write a mock 6-month narrative and financial report to a donor." },
+    ],
+    {
+      days1to30: ["Study Theory of Change and logframes", "Take a free project management basics course", "Read one real donor project report"],
+      days31to60: ["Learn PMD Pro fundamentals", "Build a full workplan + logframe for a mock project", "Practice in Asana or ClickUp"],
+      days61to90: ["Volunteer to coordinate a small NGO or community project", "Apply to program officer and project coordinator roles"],
+    },
+    ["partnerships-stakeholder-engagement", "grant-writing-mobilization", "esg-reporting"]
+  ),
+  buildCareer(
+    "partnerships-stakeholder-engagement",
+    "Sustainability Partnerships & Stakeholder Engagement",
+    "🤝",
+    "Build the coalitions that make sustainability work.",
+    "Partnerships and engagement professionals connect companies, governments, NGOs and communities — designing collaborations, managing relationships, and enabling collective action on sustainability.",
+    "No sustainability outcome happens alone — partnerships and stakeholder engagement are core capabilities for every serious organization.",
+    "high",
+    "Strong demand in NGOs, foundations, corporates, and multilateral organizations.",
+    {
+      entry: ["Engagement Coordinator", "Partnerships Associate", "Community Relations Officer"],
+      mid: ["Sustainability Partnerships Manager", "Stakeholder Engagement Lead", "External Affairs Manager"],
+      senior: ["Director of Partnerships", "Head of Stakeholder Engagement", "VP External Affairs"],
+    },
+    {
+      beginner: { soft: ["Relationship building", "Active listening", "Written communication"], technical: ["CRM basics", "Meeting facilitation", "Stakeholder mapping"] },
+      intermediate: { soft: ["Cross-cultural collaboration", "Negotiation"], technical: ["Partnership frameworks", "Community engagement methods", "MOU drafting"] },
+      advanced: { soft: ["Coalition building", "Executive influence"], technical: ["Multi-stakeholder platform design", "Conflict resolution", "Public affairs strategy"] },
+    },
+    ["HubSpot / Salesforce", "Notion", "Slack", "Zoom", "Miro", "Google Workspace"],
+    { beginner: ["carbon-literacy"], intermediate: [], advanced: [] },
+    [
+      { title: "Stakeholder map", description: "Map stakeholders around a real sustainability issue with influence/interest analysis." },
+      { title: "Partnership brief", description: "Write a 2-page brief proposing a cross-sector partnership for one SDG." },
+      { title: "Engagement plan", description: "Design a 6-month engagement plan for one target community or industry group." },
+    ],
+    {
+      days1to30: ["Read UN Global Compact partnership guides", "Study 3 real corporate–NGO partnerships", "Learn stakeholder mapping"],
+      days31to60: ["Draft a partnership brief", "Facilitate one small stakeholder meeting", "Network with 10 engagement professionals"],
+      days61to90: ["Publish a partnership case study", "Apply to engagement and partnerships roles"],
+    },
+    ["programs-project-management", "climate-communications", "education-capacity-building"]
+  ),
+  buildCareer(
+    "research-knowledge-management",
+    "Sustainability Research & Knowledge Management",
+    "🔎",
+    "Turn evidence into insight that drives climate action.",
+    "Researchers and knowledge managers generate, curate, and share evidence — running studies, producing briefs and reports, and building the knowledge systems that inform sustainability decisions.",
+    "As sustainability decisions get bigger, so does the need for rigorous research and well-organized knowledge to back them.",
+    "high",
+    "Roles in think tanks, universities, NGOs, foundations, UN agencies and corporate strategy teams.",
+    {
+      entry: ["Research Assistant", "Knowledge Management Officer", "Junior Research Analyst"],
+      mid: ["Sustainability Research Associate", "Policy Researcher", "Knowledge Manager"],
+      senior: ["Head of Research", "Director of Knowledge Management", "Principal Researcher"],
+    },
+    {
+      beginner: { soft: ["Curiosity", "Written communication"], technical: ["Literature review", "Excel", "Reference management (Zotero)"] },
+      intermediate: { soft: ["Analytical thinking", "Editorial judgment"], technical: ["Qualitative & quantitative research methods", "Survey design", "Data visualization"] },
+      advanced: { soft: ["Research leadership"], technical: ["Mixed-methods design", "Peer-review publishing", "Knowledge platform architecture"] },
+    },
+    ["Excel", "Zotero", "NVivo", "R / Stata / SPSS", "Notion", "Airtable", "Power BI"],
+    { beginner: ["carbon-literacy", "ghg-protocol"], intermediate: ["gri-cert"], advanced: ["issp-csp"] },
+    [
+      { title: "Policy brief", description: "Write a 4-page evidence-based brief on a climate or sustainability topic." },
+      { title: "Literature synthesis", description: "Produce a synthesis of the last 10 key papers on one sustainability question." },
+      { title: "Knowledge repository", description: "Design and populate a Notion/Airtable knowledge hub for a sustainability team." },
+    ],
+    {
+      days1to30: ["Read 3 recent flagship sustainability reports (IPCC, UNEP, WRI)", "Learn Zotero and research methods basics", "Pick a research question"],
+      days31to60: ["Write a literature synthesis", "Draft a policy brief", "Publish on LinkedIn or a blog"],
+      days61to90: ["Build a knowledge repository for one topic", "Apply to research and knowledge management roles"],
+    },
+    ["climate-policy", "esg-reporting", "programs-project-management"]
+  ),
+  buildCareer(
+    "grant-writing-mobilization",
+    "Grant Writing & Climate Resource Mobilization",
+    "💰",
+    "Unlock the funding that makes climate work happen.",
+    "Grant writers and resource mobilization specialists identify funders, craft proposals, and secure the grants, contracts and partnerships that finance sustainability and climate initiatives.",
+    "Climate finance is scaling fast — organizations urgently need people who can turn missions into fundable proposals.",
+    "very-high",
+    "Highly in-demand in NGOs, foundations, social enterprises and climate startups worldwide.",
+    {
+      entry: ["Grants Assistant", "Fundraising Associate", "Development Officer"],
+      mid: ["Grant Writer", "Resource Mobilization Officer", "Proposal Development Specialist"],
+      senior: ["Director of Development", "Head of Resource Mobilization", "Chief Development Officer"],
+    },
+    {
+      beginner: { soft: ["Written communication", "Attention to detail"], technical: ["Proposal writing basics", "Budgeting", "Donor research"] },
+      intermediate: { soft: ["Storytelling", "Donor relations"], technical: ["Logframes / Theory of Change", "Budget narratives", "Compliance (USAID, EU, GEF)"] },
+      advanced: { soft: ["Strategic partnerships"], technical: ["Blended finance", "Climate fund design (GCF, GEF, AF)", "Consortium proposals"] },
+    },
+    ["Excel", "Word", "Notion", "Instrumentl / Candid", "Salesforce / HubSpot"],
+    { beginner: [], intermediate: ["chmm"], advanced: ["issp-csp", "cfa-esg"] },
+    [
+      { title: "Mock GCF concept note", description: "Draft a Green Climate Fund concept note for a climate project." },
+      { title: "Funder landscape scan", description: "Map 20 relevant funders for a chosen thematic area with fit analysis." },
+      { title: "Full proposal", description: "Write a full 10-page proposal with logframe and budget for a real call." },
+    ],
+    {
+      days1to30: ["Study GCF, GEF and Adaptation Fund guidelines", "Read 3 successful public proposals", "Take a free grant writing intro"],
+      days31to60: ["Draft a funder landscape scan", "Write a mock concept note", "Reach out to 5 fundraising professionals"],
+      days61to90: ["Complete a full mock proposal", "Apply to grant writer and development officer roles"],
+    },
+    ["programs-project-management", "partnerships-stakeholder-engagement", "research-knowledge-management"]
+  ),
 ];
 
 export function getCareerBySlug(slug: string) {
