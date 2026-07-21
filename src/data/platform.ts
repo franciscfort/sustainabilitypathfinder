@@ -51,7 +51,10 @@ export type SkillCategory =
   | "circular-economy"
   | "biodiversity"
   | "agriculture"
-  | "impact-measurement";
+  | "impact-measurement"
+  | "education"
+  | "research"
+  | "fundraising";
 
 export const skillCategoryLabels: Record<SkillCategory, string> = {
   "esg-reporting": "ESG & Reporting",
@@ -66,7 +69,11 @@ export const skillCategoryLabels: Record<SkillCategory, string> = {
   biodiversity: "Biodiversity",
   agriculture: "Sustainable Agriculture",
   "impact-measurement": "Impact Measurement",
+  education: "Education & Capacity Building",
+  research: "Research & Knowledge",
+  fundraising: "Fundraising & Grants",
 };
+
 
 export interface CareerPathV2 {
   slug: string;
