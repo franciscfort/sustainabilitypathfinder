@@ -227,6 +227,33 @@ export const resources: Resource[] = [
   { id: "r67", title: "WWF EFN Fellowship", type: "fellowship", provider: "WWF Education for Nature", description: "Funding for conservation leaders pursuing graduate study.", careerPaths: ["biodiversity-conservation"], cost: "free", url: "https://www.worldwildlife.org/projects/russell-e-train-fellowships" },
   { id: "r68", title: "Careers in Sustainability: Your Step-by-Step Guide", type: "book", provider: "Francisc Fort", description: "No-fluff ebook for beginners who want real careers in sustainability without a fancy degree or years of experience.", careerPaths: ["climate-policy", "esg-reporting", "carbon-markets", "renewable-energy", "biodiversity-conservation", "environmental-consulting"], cost: "paid", url: "https://nestuge.com/kl8oyapok" },
   { id: "r69", title: "Africa Carbon Market Career Roadmap", type: "guide", provider: "Francisc Fort", description: "Focused roadmap to building a career in Africa's growing carbon markets.", careerPaths: ["carbon-markets", "climate-policy", "community-sustainability"], cost: "paid", url: "https://nestuge.com/lki3emsce" },
+
+  // --- Education & Capacity Building ---
+  { id: "r70", title: "UNESCO Education for Sustainable Development", type: "guide", provider: "UNESCO", description: "Global framework and toolkits for embedding sustainability in education.", careerPaths: ["education-capacity-building", "climate-education"], cost: "free", url: "https://www.unesco.org/en/sustainable-development/education" },
+  { id: "r71", title: "Teaching Climate Change (NOAA CLEAN)", type: "guide", provider: "CLEAN Network", description: "Peer-reviewed climate and energy teaching resources for all grade levels.", careerPaths: ["education-capacity-building", "climate-education"], cost: "free", url: "https://cleanet.org/" },
+  { id: "r72", title: "Design for Learning", type: "course", provider: "University of Illinois (Coursera)", description: "Instructional design fundamentals for building effective learning experiences.", careerPaths: ["education-capacity-building"], cost: "freemium", url: "https://www.coursera.org/learn/instructional-design-foundations" },
+
+  // --- Programs & Project Management ---
+  { id: "r73", title: "PM4NGOs — PMD Pro Guide", type: "guide", provider: "PM4NGOs", description: "Free open-source project management standard for development and climate NGOs.", careerPaths: ["programs-project-management"], cost: "free", url: "https://pm4ngos.org/methodology/pmd-pro/" },
+  { id: "r74", title: "Foundations of Project Management", type: "course", provider: "Google (Coursera)", description: "Beginner-friendly PM course covering scope, schedule, budget, risk and stakeholders.", careerPaths: ["programs-project-management"], cost: "freemium", url: "https://www.coursera.org/learn/project-management-foundations" },
+  { id: "r75", title: "Adaptive Management for Conservation & Climate", type: "guide", provider: "Conservation Measures Partnership", description: "Open Standards for the Practice of Conservation — the go-to adaptive PM framework.", careerPaths: ["programs-project-management", "biodiversity-conservation"], cost: "free", url: "https://conservationstandards.org/" },
+
+  // --- Partnerships & Stakeholder Engagement ---
+  { id: "r76", title: "IAP2 Spectrum of Public Participation", type: "guide", provider: "IAP2", description: "Global reference framework for designing meaningful stakeholder engagement.", careerPaths: ["partnerships-stakeholder-engagement", "community-sustainability"], cost: "free", url: "https://www.iap2.org/page/pillars" },
+  { id: "r77", title: "AA1000 Stakeholder Engagement Standard", type: "guide", provider: "AccountAbility", description: "Widely used standard for planning and reporting on stakeholder engagement.", careerPaths: ["partnerships-stakeholder-engagement", "esg-reporting"], cost: "free", url: "https://www.accountability.org/standards/aa1000-stakeholder-engagement-standard/" },
+  { id: "r78", title: "Partnering Initiative — Resources", type: "guide", provider: "The Partnering Initiative", description: "Toolkits and guides on multi-stakeholder partnerships for the SDGs.", careerPaths: ["partnerships-stakeholder-engagement"], cost: "free", url: "https://thepartneringinitiative.org/publications/" },
+
+  // --- Research & Knowledge Management ---
+  { id: "r79", title: "Our World in Data — Research on Environment", type: "article", provider: "Our World in Data", description: "Open, citable research and datasets on climate, energy and sustainability.", careerPaths: ["research-knowledge-management", "climate-communications"], cost: "free", url: "https://ourworldindata.org/environmental-change" },
+  { id: "r80", title: "Introduction to Systematic Review & Meta-Analysis", type: "course", provider: "Johns Hopkins (Coursera)", description: "Rigorous evidence synthesis methods for research and policy analysts.", careerPaths: ["research-knowledge-management"], cost: "freemium", url: "https://www.coursera.org/learn/systematic-review" },
+  { id: "r81", title: "KM4Dev Community", type: "community", provider: "KM4Dev", description: "Global community of practice for knowledge management in development and climate work.", careerPaths: ["research-knowledge-management"], cost: "free", url: "https://www.km4dev.org/" },
+
+  // --- Grant Writing & Resource Mobilization ---
+  { id: "r82", title: "Candid Learning — Grant Writing Courses", type: "course", provider: "Candid (formerly Foundation Center)", description: "Free and low-cost courses on proposal writing, prospect research and budgeting.", careerPaths: ["grant-writing-mobilization"], cost: "freemium", url: "https://learning.candid.org/" },
+  { id: "r83", title: "Green Climate Fund Project Preparation Toolkit", type: "guide", provider: "Green Climate Fund", description: "Templates and guidance for developing GCF concept notes and full proposals.", careerPaths: ["grant-writing-mobilization", "climate-policy"], cost: "free", url: "https://www.greenclimate.fund/project-preparation" },
+  { id: "r84", title: "Instrumentl Grant Writing Blog", type: "article", provider: "Instrumentl", description: "Practical, up-to-date articles on grant writing, funder research and fundraising strategy.", careerPaths: ["grant-writing-mobilization"], cost: "free", url: "https://www.instrumentl.com/blog" },
+  { id: "r85", title: "AFP — Association of Fundraising Professionals", type: "community", provider: "AFP Global", description: "Largest professional community for fundraisers, with local chapters worldwide.", careerPaths: ["grant-writing-mobilization"], cost: "freemium", url: "https://afpglobal.org/" },
+
 ];
 
 
