@@ -42,7 +42,7 @@ const Index = () => {
           <p className="text-center text-muted-foreground mb-10">Discover → Learn → Build Skills → Gain Experience → Advance</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             <JourneyStep to="/assessment" icon={<Compass />} title="Discover" desc="Take the free assessment to find paths that fit." />
-            <JourneyStep to="/careers" icon={<BookOpen />} title="Learn" desc="Explore 12 career roadmaps with full guidance." />
+            <JourneyStep to="/careers" icon={<BookOpen />} title="Learn" desc="Explore 17 career roadmaps with full guidance." />
             <JourneyStep to="/skills" icon={<Wrench />} title="Skills" desc="Build the technical and soft skills you need." />
             <JourneyStep to="/certifications" icon={<Award />} title="Certify" desc="Pick certifications that move your career forward." />
             <JourneyStep to="/dashboard" icon={<LayoutDashboard />} title="Track" desc="Save and track your progress in one dashboard." />
@@ -55,7 +55,8 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="flex items-baseline justify-between mb-6 flex-wrap gap-2">
             <h2 className="text-3xl font-bold">Featured career paths</h2>
-            <Link to="/careers" className="text-primary text-sm font-semibold hover:underline">View all 12 →</Link>
+            <Link to="/careers" className="text-primary text-sm font-semibold hover:underline">View all 17 →</Link>
+
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {["esg-reporting", "carbon-markets", "climate-policy", "renewable-energy", "sustainability-data", "circular-economy"].map((slug) => (
