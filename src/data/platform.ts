@@ -51,7 +51,10 @@ export type SkillCategory =
   | "circular-economy"
   | "biodiversity"
   | "agriculture"
-  | "impact-measurement";
+  | "impact-measurement"
+  | "education"
+  | "research"
+  | "fundraising";
 
 export const skillCategoryLabels: Record<SkillCategory, string> = {
   "esg-reporting": "ESG & Reporting",
@@ -66,7 +69,11 @@ export const skillCategoryLabels: Record<SkillCategory, string> = {
   biodiversity: "Biodiversity",
   agriculture: "Sustainable Agriculture",
   "impact-measurement": "Impact Measurement",
+  education: "Education & Capacity Building",
+  research: "Research & Knowledge",
+  fundraising: "Fundraising & Grants",
 };
+
 
 export interface CareerPathV2 {
   slug: string;
@@ -119,7 +126,21 @@ export const certifications: Certification[] = [
   { id: "renewable-100", name: "Renewable Energy 100 (edX)", provider: "edX / TU Delft", level: "beginner", cost: "freemium", timeCommitment: "30 hours", description: "Fundamentals of solar, wind, and energy systems.", careerPaths: ["renewable-energy"] },
   { id: "circular-elen", name: "Circular Economy in Cities", provider: "Ellen MacArthur Foundation", level: "beginner", cost: "free", timeCommitment: "15 hours", description: "Principles and applications of circular economy.", careerPaths: ["circular-economy", "sustainable-supply-chain"] },
   { id: "cipsx", name: "CIPS Sustainable Procurement", provider: "CIPS", level: "intermediate", cost: "paid", costNote: "~$600", timeCommitment: "40 hours", description: "Sustainable procurement and supply chain practices.", careerPaths: ["sustainable-supply-chain"] },
+
+  // --- Non-technical / inclusive pathways ---
+  { id: "unitar-ccl", name: "UN CC:Learn Climate Change Teacher Academy", provider: "UN CC:Learn / UNESCO", level: "beginner", cost: "free", timeCommitment: "20 hours", description: "Free UN training for educators to teach climate change confidently.", careerPaths: ["education-capacity-building", "climate-education"], url: "https://unccelearn.org/course/view.php?id=98" },
+  { id: "atd-facilitator", name: "ATD Training Certificate", provider: "Association for Talent Development", level: "intermediate", cost: "paid", costNote: "~$1,600", timeCommitment: "30 hours", description: "Instructional design and facilitation credential for adult learning.", careerPaths: ["education-capacity-building"], url: "https://www.td.org/education-courses/atd-training-certificate" },
+  { id: "pmp", name: "PMP — Project Management Professional", provider: "PMI", level: "advanced", cost: "paid", costNote: "~$555", timeCommitment: "180 hours", description: "Global standard for managing complex projects, widely used in climate programs.", careerPaths: ["programs-project-management", "renewable-energy", "environmental-consulting"], url: "https://www.pmi.org/certifications/project-management-pmp" },
+  { id: "prince2", name: "PRINCE2 Foundation", provider: "AXELOS", level: "beginner", cost: "paid", costNote: "~$400", timeCommitment: "20 hours", description: "Structured project management method used across UN, EU and DFID programs.", careerPaths: ["programs-project-management"], url: "https://www.axelos.com/certifications/propath/prince2-project-management/prince2-foundation" },
+  { id: "google-pm", name: "Google Project Management Certificate", provider: "Coursera / Google", level: "beginner", cost: "paid", costNote: "~$49/mo", timeCommitment: "6 months", description: "Practical project management foundations with Agile and traditional methods.", careerPaths: ["programs-project-management", "partnerships-stakeholder-engagement"], url: "https://www.coursera.org/professional-certificates/google-project-management" },
+  { id: "aa-iap2", name: "IAP2 Foundations in Public Participation", provider: "IAP2", level: "intermediate", cost: "paid", costNote: "~$1,500", timeCommitment: "35 hours", description: "Global gold standard for stakeholder and community engagement.", careerPaths: ["partnerships-stakeholder-engagement", "community-sustainability"], url: "https://iap2.org/page/Foundations" },
+  { id: "cfre", name: "CFRE — Certified Fund Raising Executive", provider: "CFRE International", level: "advanced", cost: "paid", costNote: "~$875", timeCommitment: "120 hours", description: "The global credential for professional fundraisers.", careerPaths: ["grant-writing-mobilization"], url: "https://www.cfre.org/certification/" },
+  { id: "philanthropy-grantwriting", name: "Grant Writing Specialization", provider: "UC Davis (Coursera)", level: "beginner", cost: "freemium", timeCommitment: "40 hours", description: "End-to-end grant writing from prospect research to proposal submission.", careerPaths: ["grant-writing-mobilization"], url: "https://www.coursera.org/specializations/grant-writing" },
+  { id: "gcf-readiness", name: "GCF Readiness & Preparatory Support", provider: "Green Climate Fund", level: "advanced", cost: "free", timeCommitment: "15 hours", description: "Official training on accessing Green Climate Fund resources.", careerPaths: ["grant-writing-mobilization", "climate-policy"], url: "https://www.greenclimate.fund/readiness" },
+  { id: "km4dev", name: "Knowledge Management for Development", provider: "FAO / KM4Dev", level: "beginner", cost: "free", timeCommitment: "12 hours", description: "Free UN-hosted training on knowledge management for development and climate programs.", careerPaths: ["research-knowledge-management"], url: "https://elearning.fao.org/course/view.php?id=685" },
+  { id: "research-methods-lse", name: "Research Methods for Business", provider: "LSE / edX", level: "intermediate", cost: "freemium", timeCommitment: "30 hours", description: "Applied qualitative and quantitative research methods for policy and program research.", careerPaths: ["research-knowledge-management"], url: "https://www.edx.org/learn/research-methods" },
 ];
+
 
 // --- Resources ---------------------------------------------------------------
 export const resources: Resource[] = [
@@ -206,6 +227,33 @@ export const resources: Resource[] = [
   { id: "r67", title: "WWF EFN Fellowship", type: "fellowship", provider: "WWF Education for Nature", description: "Funding for conservation leaders pursuing graduate study.", careerPaths: ["biodiversity-conservation"], cost: "free", url: "https://www.worldwildlife.org/projects/russell-e-train-fellowships" },
   { id: "r68", title: "Careers in Sustainability: Your Step-by-Step Guide", type: "book", provider: "Francisc Fort", description: "No-fluff ebook for beginners who want real careers in sustainability without a fancy degree or years of experience.", careerPaths: ["climate-policy", "esg-reporting", "carbon-markets", "renewable-energy", "biodiversity-conservation", "environmental-consulting"], cost: "paid", url: "https://nestuge.com/kl8oyapok" },
   { id: "r69", title: "Africa Carbon Market Career Roadmap", type: "guide", provider: "Francisc Fort", description: "Focused roadmap to building a career in Africa's growing carbon markets.", careerPaths: ["carbon-markets", "climate-policy", "community-sustainability"], cost: "paid", url: "https://nestuge.com/lki3emsce" },
+
+  // --- Education & Capacity Building ---
+  { id: "r70", title: "UNESCO Education for Sustainable Development", type: "guide", provider: "UNESCO", description: "Global framework and toolkits for embedding sustainability in education.", careerPaths: ["education-capacity-building", "climate-education"], cost: "free", url: "https://www.unesco.org/en/sustainable-development/education" },
+  { id: "r71", title: "Teaching Climate Change (NOAA CLEAN)", type: "guide", provider: "CLEAN Network", description: "Peer-reviewed climate and energy teaching resources for all grade levels.", careerPaths: ["education-capacity-building", "climate-education"], cost: "free", url: "https://cleanet.org/" },
+  { id: "r72", title: "Design for Learning", type: "course", provider: "University of Illinois (Coursera)", description: "Instructional design fundamentals for building effective learning experiences.", careerPaths: ["education-capacity-building"], cost: "freemium", url: "https://www.coursera.org/learn/instructional-design-foundations" },
+
+  // --- Programs & Project Management ---
+  { id: "r73", title: "PM4NGOs — PMD Pro Guide", type: "guide", provider: "PM4NGOs", description: "Free open-source project management standard for development and climate NGOs.", careerPaths: ["programs-project-management"], cost: "free", url: "https://pm4ngos.org/methodology/pmd-pro/" },
+  { id: "r74", title: "Foundations of Project Management", type: "course", provider: "Google (Coursera)", description: "Beginner-friendly PM course covering scope, schedule, budget, risk and stakeholders.", careerPaths: ["programs-project-management"], cost: "freemium", url: "https://www.coursera.org/learn/project-management-foundations" },
+  { id: "r75", title: "Adaptive Management for Conservation & Climate", type: "guide", provider: "Conservation Measures Partnership", description: "Open Standards for the Practice of Conservation — the go-to adaptive PM framework.", careerPaths: ["programs-project-management", "biodiversity-conservation"], cost: "free", url: "https://conservationstandards.org/" },
+
+  // --- Partnerships & Stakeholder Engagement ---
+  { id: "r76", title: "IAP2 Spectrum of Public Participation", type: "guide", provider: "IAP2", description: "Global reference framework for designing meaningful stakeholder engagement.", careerPaths: ["partnerships-stakeholder-engagement", "community-sustainability"], cost: "free", url: "https://www.iap2.org/page/pillars" },
+  { id: "r77", title: "AA1000 Stakeholder Engagement Standard", type: "guide", provider: "AccountAbility", description: "Widely used standard for planning and reporting on stakeholder engagement.", careerPaths: ["partnerships-stakeholder-engagement", "esg-reporting"], cost: "free", url: "https://www.accountability.org/standards/aa1000-stakeholder-engagement-standard/" },
+  { id: "r78", title: "Partnering Initiative — Resources", type: "guide", provider: "The Partnering Initiative", description: "Toolkits and guides on multi-stakeholder partnerships for the SDGs.", careerPaths: ["partnerships-stakeholder-engagement"], cost: "free", url: "https://thepartneringinitiative.org/publications/" },
+
+  // --- Research & Knowledge Management ---
+  { id: "r79", title: "Our World in Data — Research on Environment", type: "article", provider: "Our World in Data", description: "Open, citable research and datasets on climate, energy and sustainability.", careerPaths: ["research-knowledge-management", "climate-communications"], cost: "free", url: "https://ourworldindata.org/environmental-change" },
+  { id: "r80", title: "Introduction to Systematic Review & Meta-Analysis", type: "course", provider: "Johns Hopkins (Coursera)", description: "Rigorous evidence synthesis methods for research and policy analysts.", careerPaths: ["research-knowledge-management"], cost: "freemium", url: "https://www.coursera.org/learn/systematic-review" },
+  { id: "r81", title: "KM4Dev Community", type: "community", provider: "KM4Dev", description: "Global community of practice for knowledge management in development and climate work.", careerPaths: ["research-knowledge-management"], cost: "free", url: "https://www.km4dev.org/" },
+
+  // --- Grant Writing & Resource Mobilization ---
+  { id: "r82", title: "Candid Learning — Grant Writing Courses", type: "course", provider: "Candid (formerly Foundation Center)", description: "Free and low-cost courses on proposal writing, prospect research and budgeting.", careerPaths: ["grant-writing-mobilization"], cost: "freemium", url: "https://learning.candid.org/" },
+  { id: "r83", title: "Green Climate Fund Project Preparation Toolkit", type: "guide", provider: "Green Climate Fund", description: "Templates and guidance for developing GCF concept notes and full proposals.", careerPaths: ["grant-writing-mobilization", "climate-policy"], cost: "free", url: "https://www.greenclimate.fund/project-preparation" },
+  { id: "r84", title: "Instrumentl Grant Writing Blog", type: "article", provider: "Instrumentl", description: "Practical, up-to-date articles on grant writing, funder research and fundraising strategy.", careerPaths: ["grant-writing-mobilization"], cost: "free", url: "https://www.instrumentl.com/blog" },
+  { id: "r85", title: "AFP — Association of Fundraising Professionals", type: "community", provider: "AFP Global", description: "Largest professional community for fundraisers, with local chapters worldwide.", careerPaths: ["grant-writing-mobilization"], cost: "freemium", url: "https://afpglobal.org/" },
+
 ];
 
 
@@ -230,7 +278,27 @@ export const skills: Skill[] = [
   { slug: "biodiversity-monitoring", name: "Biodiversity Monitoring & TNFD", category: "biodiversity", kind: "technical", whatItIs: "Tracking and reporting on nature impacts and dependencies.", whyItMatters: "Nature loss is the next ESG frontier.", careerPaths: ["biodiversity-conservation"], beginnerResources: ["r18"] },
   { slug: "regen-ag", name: "Regenerative Agriculture", category: "agriculture", kind: "technical", whatItIs: "Farming practices that restore soil, biodiversity, and water cycles.", whyItMatters: "Critical for food system resilience and carbon removals.", careerPaths: ["community-sustainability"], beginnerResources: ["r6"] },
   { slug: "impact-mgmt", name: "Impact Measurement & Management (IMM)", category: "impact-measurement", kind: "technical", whatItIs: "Frameworks like IRIS+ and SDGs to measure social and environmental outcomes.", whyItMatters: "Required for impact investing and credible nonprofit reporting.", careerPaths: ["carbon-markets", "community-sustainability"], beginnerResources: ["nebim"] },
-  { slug: "project-mgmt", name: "Sustainability Project Management", category: "policy-governance", kind: "soft", whatItIs: "Planning and delivering cross-functional sustainability initiatives.", whyItMatters: "Sustainability work spans every department; PM skill is foundational.", careerPaths: ["esg-reporting", "renewable-energy", "environmental-consulting"], beginnerResources: ["google-da"] },
+  { slug: "project-mgmt", name: "Sustainability Project Management", category: "policy-governance", kind: "soft", whatItIs: "Planning and delivering cross-functional sustainability initiatives.", whyItMatters: "Sustainability work spans every department; PM skill is foundational.", careerPaths: ["esg-reporting", "renewable-energy", "environmental-consulting", "programs-project-management"], beginnerResources: ["google-pm", "r74"] },
+
+  // --- Non-technical / inclusive pathway skills ---
+  { slug: "curriculum-design", name: "Curriculum & Learning Design", category: "education", kind: "soft", whatItIs: "Designing training, workshops and courses that help learners build sustainability skills.", whyItMatters: "Every organization needs people who can turn climate knowledge into learning experiences.", careerPaths: ["education-capacity-building", "climate-education"], beginnerResources: ["r72", "atd-facilitator"] },
+  { slug: "facilitation", name: "Facilitation & Workshop Design", category: "education", kind: "soft", whatItIs: "Leading interactive sessions that produce shared understanding and decisions.", whyItMatters: "Critical for capacity building, community work and multi-stakeholder processes.", careerPaths: ["education-capacity-building", "partnerships-stakeholder-engagement", "community-sustainability"], beginnerResources: ["aa-iap2"] },
+  { slug: "climate-pedagogy", name: "Climate Change Pedagogy", category: "education", kind: "soft", whatItIs: "Teaching climate science, justice and solutions in age-appropriate, action-oriented ways.", whyItMatters: "Grows the next generation of climate-literate citizens and workers.", careerPaths: ["education-capacity-building", "climate-education"], beginnerResources: ["unitar-ccl", "r71"] },
+
+  { slug: "program-mgmt", name: "Program Management for Climate Programs", category: "policy-governance", kind: "soft", whatItIs: "Managing portfolios of climate and sustainability projects across scope, budget, risk and impact.", whyItMatters: "Turns funded climate strategies into delivered outcomes.", careerPaths: ["programs-project-management"], beginnerResources: ["r73", "google-pm"] },
+  { slug: "logframes", name: "Logframes & Theory of Change", category: "impact-measurement", kind: "technical", whatItIs: "Structured planning tools that link activities to outputs, outcomes and impact.", whyItMatters: "Required by nearly every major climate and development funder.", careerPaths: ["programs-project-management", "grant-writing-mobilization", "research-knowledge-management"], beginnerResources: ["r73"] },
+  { slug: "me-l", name: "Monitoring, Evaluation & Learning (MEL)", category: "impact-measurement", kind: "technical", whatItIs: "Systems to track program performance and generate learning that improves delivery.", whyItMatters: "Essential for reporting to funders and demonstrating impact.", careerPaths: ["programs-project-management", "research-knowledge-management"], beginnerResources: ["r75"] },
+
+  { slug: "partnerships", name: "Partnership Development", category: "policy-governance", kind: "soft", whatItIs: "Building and managing partnerships with governments, funders, communities and businesses.", whyItMatters: "No single actor can deliver the transition alone — partnerships are the delivery model.", careerPaths: ["partnerships-stakeholder-engagement", "community-sustainability"], beginnerResources: ["r78"] },
+  { slug: "community-engagement", name: "Community & Stakeholder Engagement", category: "policy-governance", kind: "soft", whatItIs: "Co-designing sustainability initiatives with the people they affect.", whyItMatters: "Underpins social license, equity and long-term success.", careerPaths: ["partnerships-stakeholder-engagement", "community-sustainability", "climate-policy"], beginnerResources: ["r76", "r77"] },
+
+  { slug: "research-methods", name: "Sustainability Research Methods", category: "research", kind: "technical", whatItIs: "Applying qualitative and quantitative methods to climate, environmental and social questions.", whyItMatters: "Credible research is the foundation of policy, strategy and funding decisions.", careerPaths: ["research-knowledge-management", "climate-policy"], beginnerResources: ["research-methods-lse", "r79"] },
+  { slug: "knowledge-mgmt", name: "Knowledge Management", category: "research", kind: "soft", whatItIs: "Capturing, organizing and sharing what an organization knows so it can learn and improve.", whyItMatters: "Climate work moves fast — KM keeps hard-won lessons from getting lost.", careerPaths: ["research-knowledge-management", "programs-project-management"], beginnerResources: ["km4dev", "r81"] },
+
+  { slug: "grant-writing", name: "Grant Writing & Proposal Development", category: "fundraising", kind: "soft", whatItIs: "Turning missions into fundable proposals that win grants and contracts.", whyItMatters: "Directly unlocks the money that makes climate and sustainability work possible.", careerPaths: ["grant-writing-mobilization"], beginnerResources: ["philanthropy-grantwriting", "r82"] },
+  { slug: "donor-research", name: "Donor & Funder Research", category: "fundraising", kind: "technical", whatItIs: "Identifying and qualifying the right funders for a project or organization.", whyItMatters: "Great proposals still fail when sent to the wrong funder.", careerPaths: ["grant-writing-mobilization"], beginnerResources: ["r82", "r84"] },
+  { slug: "climate-finance-access", name: "Climate Finance Access (GCF, GEF, AF)", category: "fundraising", kind: "technical", whatItIs: "Navigating the requirements of major multilateral climate funds.", whyItMatters: "Where the largest climate resource flows are — but hardest to access without expertise.", careerPaths: ["grant-writing-mobilization", "climate-policy"], beginnerResources: ["gcf-readiness", "r83"] },
+
 ];
 
 // --- Career paths v2 ----------------------------------------------------------
