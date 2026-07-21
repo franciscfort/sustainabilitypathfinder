@@ -31,7 +31,7 @@ const Index = () => {
             <Link to="/assessment"><Button variant="hero" size="xl">Take the Assessment <ArrowRight className="w-5 h-5" /></Button></Link>
             <Link to="/careers"><Button variant="outline" size="xl">Explore Career Paths</Button></Link>
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">✓ 3–5 minutes  •  ✓ 12 specialized paths  •  ✓ 100% free</p>
+          <p className="mt-6 text-sm text-muted-foreground">✓ 3–5 minutes  •  ✓ 17 specialized paths  •  ✓ 100% free</p>
         </div>
       </section>
 
