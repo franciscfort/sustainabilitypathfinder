@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { certifications, careerPathsV2 } from "@/data/platform";
@@ -62,6 +62,12 @@ export default function Certifications() {
                     <span className="px-2 py-0.5 rounded bg-muted capitalize">{c.cost}{c.costNote ? ` · ${c.costNote}` : ""}</span>
                     <span className="px-2 py-0.5 rounded bg-muted">{c.timeCommitment}</span>
                   </div>
+                  {c.url && (
+                    <a href={c.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
+                      View certification <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+
                 </CardContent>
               </Card>
             );
