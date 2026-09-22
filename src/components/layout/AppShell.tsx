@@ -1,6 +1,6 @@
 import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Leaf, Menu, X, Instagram } from "lucide-react";
+import { Leaf, Menu, X, Instagram, Coffee } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -85,7 +85,7 @@ export function AppShell() {
       </main>
 
       <footer className="border-t border-border bg-card/50 mt-12">
-        <div className="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-4 text-sm">
+        <div className="max-w-7xl mx-auto px-4 py-10 grid gap-8 md:grid-cols-5 text-sm">
           <div>
             <div className="flex items-center gap-2 font-bold mb-2">
               <Leaf className="w-5 h-5 text-primary" />
@@ -120,6 +120,19 @@ export function AppShell() {
             { to: "/about", label: "About" },
             { to: "/reach", label: "Global Reach" },
           ]} />
+          <div>
+            <div className="font-semibold mb-2">Support</div>
+            <a
+              href="https://ko-fi.com/cfort"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium"
+              aria-label="Support Sustainability Pathfinder on Ko-fi"
+            >
+              <Coffee className="w-4 h-4" />
+              <span>Support the Pathfinder</span>
+            </a>
+          </div>
         </div>
         <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} Sustainability Career Pathfinder
