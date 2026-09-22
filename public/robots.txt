@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://sustainabilitypathfinder.lovable.app/sitemap.xml
+Sitemap: https://sustainabilitypathfinder.com/sitemap.xml
