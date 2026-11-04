@@ -5,6 +5,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { emailSchema, checkClientRateLimit } from "@/lib/validation";
 import { detectCountry } from "@/lib/geo";
@@ -20,6 +22,7 @@ export function EmailCaptureDialog({ onEmailSubmitted, assessmentId, sessionId }
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [marketing, setMarketing] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,6 +51,8 @@ export function EmailCaptureDialog({ onEmailSubmitted, assessmentId, sessionId }
           assessment_id: assessmentId ?? null,
           session_id: sessionId ?? null,
           country,
+          marketing_consent: marketing,
+          marketing_consent_at: marketing ? new Date().toISOString() : null,
         });
 
       if (dbError) {
@@ -102,11 +107,21 @@ export function EmailCaptureDialog({ onEmailSubmitted, assessmentId, sessionId }
             />
             {error && <p className="text-sm text-destructive">{error}</p>}
           </div>
+          <label className="flex items-start gap-2 text-sm text-muted-foreground cursor-pointer">
+            <Checkbox
+              checked={marketing}
+              onCheckedChange={(v) => setMarketing(v === true)}
+              className="mt-0.5"
+              aria-label="Marketing updates opt-in"
+            />
+            <span>Also send me occasional SCP updates and news about the Portfolio Project Sprint. Unsubscribe any time.</span>
+          </label>
           <Button type="submit" className="w-full" disabled={submitting}>
             {submitting ? "Processing..." : "Download PDF"}
           </Button>
           <p className="text-xs text-muted-foreground text-center">
-            We respect your privacy. No spam, ever.
+            We'll use this email to send your results PDF.{" "}
+            <Link to="/privacy" className="underline text-primary">Privacy Policy</Link>
           </p>
         </form>
       </DialogContent>

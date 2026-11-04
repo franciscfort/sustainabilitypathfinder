@@ -18,6 +18,9 @@ import About from "./pages/About";
 import SharedResults from "./pages/SharedResults";
 import Reach from "./pages/Reach";
 import NotFound from "./pages/NotFound";
+import Privacy from "./pages/Privacy";
+import { CookieBanner } from "@/components/CookieBanner";
+import { MiniFooter } from "@/components/LegalLinks";
 
 const queryClient = new QueryClient();
 
@@ -41,10 +44,12 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/reach" element={<Reach />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Route>
-          <Route path="/results/:shareId" element={<SharedResults />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/results/:shareId" element={<><SharedResults /><MiniFooter /></>} />
+          <Route path="*" element={<><NotFound /><MiniFooter /></>} />
         </Routes>
+        <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
