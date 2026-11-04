@@ -2,6 +2,7 @@ import { Outlet, NavLink, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Leaf, Menu, X, Instagram, Coffee } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LegalLinks } from "@/components/LegalLinks";
 
 const nav = [
   { to: "/", label: "Home", end: true },
@@ -135,7 +136,8 @@ export function AppShell() {
           </div>
         </div>
         <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Sustainability Career Pathfinder
+          <div>© {new Date().getFullYear()} Sustainability Career Pathfinder</div>
+          <LegalLinks className="mt-2" />
         </div>
       </footer>
     </div>
