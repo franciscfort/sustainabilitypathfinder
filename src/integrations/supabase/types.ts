@@ -102,6 +102,8 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          marketing_consent: boolean
+          marketing_consent_at: string | null
           session_id: string | null
         }
         Insert: {
@@ -110,6 +112,8 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          marketing_consent?: boolean
+          marketing_consent_at?: string | null
           session_id?: string | null
         }
         Update: {
@@ -118,6 +122,8 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          marketing_consent?: boolean
+          marketing_consent_at?: string | null
           session_id?: string | null
         }
         Relationships: [
@@ -144,71 +150,25 @@ export type Database = {
         }
         Returns: boolean
       }
-      create_assessment:
-        | {
-            Args: {
-              _career_matches: Json
-              _current_skills: string[]
-              _passion_areas: string[]
-              _personality_answers: Json
-              _recommended_skills: Json
-              _session_id: string
-            }
-            Returns: {
-              id: string
-              share_id: string
-            }[]
-          }
-        | {
-            Args: {
-              _career_matches: Json
-              _current_skills: string[]
-              _gender?: string
-              _passion_areas: string[]
-              _personality_answers: Json
-              _recommended_skills: Json
-              _session_id: string
-            }
-            Returns: {
-              id: string
-              share_id: string
-            }[]
-          }
-        | {
-            Args: {
-              _career_matches: Json
-              _country?: string
-              _current_skills: string[]
-              _gender?: string
-              _passion_areas: string[]
-              _personality_answers: Json
-              _recommended_skills: Json
-              _session_id: string
-            }
-            Returns: {
-              id: string
-              share_id: string
-            }[]
-          }
-        | {
-            Args: {
-              _career_matches: Json
-              _career_stage?: string
-              _country?: string
-              _current_goal?: string
-              _current_skills: string[]
-              _experience_level?: string
-              _gender?: string
-              _passion_areas: string[]
-              _personality_answers: Json
-              _recommended_skills: Json
-              _session_id: string
-            }
-            Returns: {
-              id: string
-              share_id: string
-            }[]
-          }
+      create_assessment: {
+        Args: {
+          _career_matches: Json
+          _career_stage?: string
+          _country?: string
+          _current_goal?: string
+          _current_skills: string[]
+          _experience_level?: string
+          _gender?: string
+          _passion_areas: string[]
+          _personality_answers: Json
+          _recommended_skills: Json
+          _session_id: string
+        }
+        Returns: {
+          id: string
+          share_id: string
+        }[]
+      }
       get_assessment_by_share_id: {
         Args: { _share_id: string }
         Returns: {

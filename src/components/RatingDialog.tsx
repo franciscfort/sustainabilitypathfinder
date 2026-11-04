@@ -125,7 +125,10 @@ export function RatingDialog() {
             onChange={(e) => setComment(e.target.value.slice(0, 500))}
             rows={3}
           />
-          <p className="text-xs text-muted-foreground text-right">{comment.length}/500</p>
+          <div className="flex justify-between gap-2 text-xs text-muted-foreground">
+            <p>Your comment may be shown on the site without your name.</p>
+            <p className="shrink-0">{comment.length}/500</p>
+          </div>
 
           <Button
             onClick={handleSubmit}

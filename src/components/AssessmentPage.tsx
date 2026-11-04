@@ -31,7 +31,7 @@ type Section =
   | "skills";
 
 const sections: { id: Section; title: string; subtitle: string }[] = [
-  { id: "gender", title: "About You", subtitle: "How do you identify? This helps us tailor your experience." },
+  { id: "gender", title: "About You (optional)", subtitle: "How do you identify? This is optional — you can skip it by pressing Continue." },
   { id: "careerStage", title: "Your Career Stage", subtitle: "Which stage best describes where you are in your sustainability journey?" },
   { id: "experienceLevel", title: "Experience Level", subtitle: "How would you rate your current sustainability knowledge and experience?" },
   { id: "currentGoal", title: "Your Current Goal", subtitle: "What is your primary goal right now?" },
@@ -87,7 +87,7 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
   const canProceed = () => {
     switch (section.id) {
       case "gender":
-        return !!gender;
+        return true; // optional
       case "careerStage":
         return !!careerStage;
       case "experienceLevel":
@@ -134,7 +134,7 @@ export function AssessmentPage({ onComplete, onBack }: AssessmentPageProps) {
               options={genderOptions.map((o) => ({ value: o.value, label: o.label }))}
               value={gender}
               onChange={(v) => setGender(v as Gender)}
-              ariaLabel="Gender"
+              ariaLabel="Gender (optional)"
             />
           )}
 
