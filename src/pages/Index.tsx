@@ -52,7 +52,7 @@ const Index = () => {
             </a>
           </div>
           <p className="mt-8 text-base md:text-lg font-medium text-foreground text-balance">
-            🌍 Joined by over <span className="text-primary font-bold">{assessments}</span> sustainability professionals across <span className="text-primary font-bold">{countries}</span> countries
+            🌍 Assessment completed by over <span className="text-primary font-bold">{assessments}</span> sustainability professionals across <span className="text-primary font-bold">{countries}</span> countries
           </p>
           <Link to="/reach" className="inline-block mt-1 text-sm text-primary hover:underline">See our global reach →</Link>
           <p className="mt-4 text-sm text-muted-foreground">✓ 3–5 minutes  •  ✓ 17 specialized paths  •  ✓ 100% free</p>
