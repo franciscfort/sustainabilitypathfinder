@@ -15,6 +15,13 @@
       "when": 1793802551561,
       "tag": "0001_marketing_consent_server_timestamp",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795615456335,
+      "tag": "0002_restrict_recent_assessments",
+      "breakpoints": true
     }
   ]
 }
