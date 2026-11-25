@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { ArrowRight, Compass, BookOpen, Wrench, Award, LayoutDashboard, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +9,17 @@ import { SocialProof } from "@/components/SocialProof";
 import { careerPathsV2 } from "@/data/platform";
 
 const Index = () => {
+  const [assessments, setAssessments] = useState("3,900+");
+  const [countries, setCountries] = useState("95+");
+  useEffect(() => {
+    supabase.rpc("get_total_assessments").then(({ data }) => {
+      if (data) setAssessments(Number(data).toLocaleString("en-US"));
+    });
+    supabase.rpc("get_country_stats").then(({ data }) => {
+      const n = (data ?? []).filter((r: any) => r.country !== "UNKNOWN").length;
+      if (n) setCountries(String(n));
+    });
+  }, []);
   return (
     <>
       <Helmet>
@@ -38,7 +51,11 @@ const Index = () => {
               <Button variant="outline" size="xl">Build Portfolio Projects</Button>
             </a>
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">✓ 3–5 minutes  •  ✓ 17 specialized paths  •  ✓ 100% free</p>
+          <p className="mt-8 text-base md:text-lg font-medium text-foreground text-balance">
+            🌍 Joined by over <span className="text-primary font-bold">{assessments}</span> sustainability professionals across <span className="text-primary font-bold">{countries}</span> countries
+          </p>
+          <Link to="/reach" className="inline-block mt-1 text-sm text-primary hover:underline">See our global reach →</Link>
+          <p className="mt-4 text-sm text-muted-foreground">✓ 3–5 minutes  •  ✓ 17 specialized paths  •  ✓ 100% free</p>
         </div>
       </section>
 
